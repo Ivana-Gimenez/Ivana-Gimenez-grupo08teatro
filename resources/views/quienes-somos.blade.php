@@ -122,7 +122,8 @@
         </div>
 
     </div>
-     <!-- Punto 4: Valores / Principios -->
+
+          <!-- Punto 4: Valores / Principios -->
     <div class="row mt-5">
         <div class="col-12">
             <h3 class="text-center mb-4">💜 Nuestros Valores</h3>
@@ -232,5 +233,7 @@
         </div>
     </div>
 </div>
+</div>
+
 
 @endsection

@@ -355,122 +355,145 @@ main {
 }
 
 /* ===== CARD CONTACTO ===== */
-.contacto-card {
-    border: 1px solid #cf90cf;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
-    background-color: #fff;
-    transition: 0.3s;
-}
-
-.contacto-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(128,0,128,0.15);
-}
-
-.contacto-card > .card-header {
-    background-color: #f2e9f7;
-    border-bottom: 1px solid #e6d9f5;
-    text-align: center;
-    color: #2c2c2c;
-}
-
-.contacto-card .card-body {
-    display: block;
-    text-align: left;
-    color: #333;
-}
-
-/* labels */
-.contacto-card .form-label {
-    font-weight: 600;
-    color: #333;
-}
-
-/* inputs */
-.contacto-input {
-    border-radius: 10px;
-    border: 1px solid #e6d9f5;
-    background-color: #fbf9ff;
-}
-
-.contacto-input:focus {
-    border-color: #a000c8;
-    box-shadow: 0 0 0 0.2rem rgba(160, 0, 200, 0.15);
-}
-
-/* botón contacto */
-.btn-contacto {
-    background-color: #a000c8;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: 500;
-    transition: 0.3s;
-    border: none;
-}
-
-.btn-contacto:hover {
-    background-color: #6a00a3;
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* equipo */
-.contacto-card .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centra horizontal */
-    text-align: center;    /* centra textos */
-}
-
-/* Imagen del equipo */
-.equipo-img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
-
+/* SECCIÓN CONTACTO */
 .contacto-section {
     padding-top: 20px;
 }
 
 .contacto-card {
     width: 100%;
-    max-width: 600px;   /* 👈 más ancho pero controlado */
+    max-width: 600px;
     margin: 0 auto;
     border-radius: 12px;
     background-color: #f7f4fb;
 }
+
+/* FORMULARIO */
+.contacto-card .card-body {
+    padding: 30px;
+}
+
+.contacto-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* INPUTS */
 .form-control {
     padding: 10px 12px;
     font-size: 15px;
     border-radius: 8px;
 }
 
-/* formulario centrado prolijo */
-.contacto-card .card-body {
-    padding: 30px;
-}
 
-/* formulario */
-.contacto-card form {
+/* ============================= */
+/* EVENTOS CARDS
+/* ============================= */
+
+.evento-card {
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    overflow: hidden;
+    border-radius: 10px; /* opcional pero mejora estética */
 }
 
-.evento-card .card-body {
-    min-height: 200px;
+/* IMAGEN RESPONSIVE */
+.evento-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
 }
-/* info NO centrada verticalmente */
+
+/* BODY FLEXIBLE */
+.evento-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* INFO CARD (CONTACTO) */
 .contacto-card-info .card-body {
     display: block;
     text-align: left;
 }
 
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+/* ===== MOBILE ===== */
+@media (max-width: 576px) {
+
+    .evento-card {
+        width: 100%;
+    }
+
+    .evento-img {
+        height: 160px;
+    }
+
+    .evento-card .card-body {
+        padding: 12px;
+    }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 577px) and (max-width: 768px) {
+
+    .evento-img {
+        height: 190px;
+    }
+
+    .evento-card .card-body {
+        padding: 14px;
+    }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 769px) {
+
+    .evento-img {
+        height: 220px;
+    }
+
+    .evento-card .card-body {
+        padding: 15px;
+    }
+}
+
+/* BODY FLEXIBLE (NO ALTURA FIJA) */
+.evento-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* INFO CARD */
+.contacto-card-info .card-body {
+    display: block;
+    text-align: left;
+}
+
+/* COLORES */
 .bg-purple {
     background-color: purple !important;
     color: white !important;
@@ -480,8 +503,19 @@ main {
     color: purple !important;
 }
 
+/* BOLETERÍA */
 .boleteria-card .card-body {
     padding: 30px;
     text-align: center;
 }
 
+/* RESPONSIVE EXTRA */
+@media (max-width: 768px) {
+    .evento-img {
+        height: 180px;
+    }
+
+    .contacto-card .card-body {
+        padding: 20px;
+    }
+}
