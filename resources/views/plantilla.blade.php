@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teatro de la Ciudad</title>
-    <!-- Bootstrap CSS -->
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
+
 <body>
-    @include('navbar')
-    
-    <main style="padding: 20px; min-height: 300px;">
+
+    @include('partes.navbar')
+
+    <!-- CONTENIDO DE LAS VISTAS -->
+    <main class="main-content">
         @yield('content')
     </main>
-    
-    @include('footer')
-    
-    <!-- Bootstrap JS (opcional, para el dropdown) -->
+
+    @include('partes.footer')
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/talleres.js') }}"></script>
 </body>
 </html>
