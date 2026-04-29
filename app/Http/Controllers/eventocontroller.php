@@ -12,6 +12,6 @@ class EventoController extends Controller
             ['nombre' => 'Concierto Sinfónico', 'fecha' => '25 de Mayo 2025', 'precio' => 20000],
         ];
         
-        return view('home', compact('eventos'));
+        return view('principal', compact('eventos'));
     }
 }

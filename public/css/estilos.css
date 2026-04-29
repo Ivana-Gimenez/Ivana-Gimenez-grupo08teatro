@@ -1,0 +1,521 @@
+/* =========================
+   BASE
+========================= */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding-top: 90px;
+} /* ← ESTE } faltaba */
+
+/* =========================
+   FOOTER
+========================= */
+footer h5 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+footer p {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+footer a {
+    font-size: 0.95rem;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+main {
+    flex: 1;
+    padding: 20px;
+    background: #f7f5ff;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar-purple {
+    background-color: purple;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-purple .nav-link {
+    font-size: 1.05rem;
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.logo-principal {
+    height: 75px;
+    width: auto;
+}
+
+.navbar-brand span {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* =========================
+   CARRUSEL PRINCIPAL
+========================= */
+#carouselExampleCaptions {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 50px;
+}
+
+.carousel-item {
+    height: 480px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.04);
+    filter: brightness(0.95);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .carousel-item { height: 300px; }
+}
+
+@media (max-width: 480px) {
+    .carousel-item { height: 180px; }
+}
+
+/* =========================
+   FLECHAS CARRUSEL
+========================= */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background: rgba(128, 0, 128, 0.75) !important;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-image: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+}
+
+.carousel-control-prev-icon::after { transform: rotate(-135deg); }
+.carousel-control-next-icon::after { transform: rotate(45deg); }
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background: rgba(115, 51, 165, 0.85) !important;
+    transform: scale(1.12);
+    box-shadow: 0 0 15px rgba(138, 62, 196, 0.6);
+}
+
+/* =========================
+   EVENTOS
+========================= */
+.eventos-section {
+    background: linear-gradient(to bottom, #f7f5ff, #ffffff);
+    padding: 50px 0 30px 0;
+}
+
+#eventosCarousel .carousel-item {
+    overflow: visible;
+    padding: 10px 0;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.titulo-eventos,
+.titulo-boleteria {
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #2c2c2c;
+}
+
+.titulo-eventos::before,
+.titulo-boleteria::before {
+    display: none !important;
+    content: none !important;
+}
+
+.titulo-eventos::after,
+.titulo-boleteria::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, transparent, #a000c8, transparent);
+    background-size: 200% auto;
+    animation: glowMove 6s linear infinite;
+}
+
+/* =========================
+   EVENTO CARD
+========================= */
+.evento-card {
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: 0.25s;
+    overflow: hidden;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+}
+
+.evento-card .card-header {
+    background: #6f42c1;
+    color: #fff;
+    text-align: center;
+}
+
+.evento-card .card-body {
+    padding: 16px;
+    text-align: center;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.btn-purple {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 6px;
+    margin-top: auto;
+}
+
+.btn-purple:hover {
+    background: #5a0080;
+    color: white;
+}
+
+/* =========================
+   BOLETERÍA
+========================= */
+
+.boleteria-subtitulo {
+    color: #222;
+    font-weight: 500;
+}
+
+.boleteria-card .card-header {
+    background-color: purple !important;
+    color: white !important;
+    text-align: center;
+}
+
+.boleteria-card .card-header h4 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.boleteria-card .card-body {
+    text-align: center;
+    color: #333;
+}
+
+.boleteria-card ul li {
+    text-align: left;
+}
+
+.boleteria-card {
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.boleteria-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(128, 0, 128, 0.2);
+}
+
+/* =========================
+   TALLERES
+========================= */
+.titulo-eventos {
+    margin-top: 30px;
+}
+
+.talleres-section {
+    padding-top: 30px;
+}
+
+
+.talleres-subtitulo {
+    color: #222;
+    font-weight: 500;
+}
+
+.taller-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: 0.3s;
+}
+
+.taller-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(128,0,128,0.2);
+}
+
+.taller-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.taller-card .card-body {
+    padding: 14px;
+}
+
+.taller-info {
+    color: purple;
+    font-weight: 600;
+}
+
+/* =========================
+   PAGINACIÓN
+========================= */
+.pagination .page-link {
+    color: white;
+    background: rgba(128, 0, 128, 0.75);
+    border: none;
+    margin: 0 4px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.pagination .page-link:hover {
+    background: rgba(115, 51, 165, 0.9);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(138, 62, 196, 0.6);
+}
+
+.pagination .page-item.active .page-link {
+    background: purple;
+    color: white;
+    box-shadow: 0 0 12px rgba(128, 0, 128, 0.7);
+}
+
+.pagination .page-item.disabled .page-link {
+    opacity: 0.5;
+}
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto-subtitulo {
+    color: #222;
+    font-weight: 500;
+}
+
+/* ===== CARD CONTACTO ===== */
+/* SECCIÓN CONTACTO */
+.contacto-section {
+    padding-top: 20px;
+}
+
+.contacto-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background-color: #f7f4fb;
+}
+
+/* FORMULARIO */
+.contacto-card .card-body {
+    padding: 30px;
+}
+
+.contacto-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* INPUTS */
+.form-control {
+    padding: 10px 12px;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
+
+/* ============================= */
+/* EVENTOS CARDS
+/* ============================= */
+
+.evento-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 10px; /* opcional pero mejora estética */
+}
+
+/* IMAGEN RESPONSIVE */
+.evento-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* BODY FLEXIBLE */
+.evento-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* INFO CARD (CONTACTO) */
+.contacto-card-info .card-body {
+    display: block;
+    text-align: left;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+/* ===== MOBILE ===== */
+@media (max-width: 576px) {
+
+    .evento-card {
+        width: 100%;
+    }
+
+    .evento-img {
+        height: 160px;
+    }
+
+    .evento-card .card-body {
+        padding: 12px;
+    }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 577px) and (max-width: 768px) {
+
+    .evento-img {
+        height: 190px;
+    }
+
+    .evento-card .card-body {
+        padding: 14px;
+    }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 769px) {
+
+    .evento-img {
+        height: 220px;
+    }
+
+    .evento-card .card-body {
+        padding: 15px;
+    }
+}
+
+/* BODY FLEXIBLE (NO ALTURA FIJA) */
+.evento-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* INFO CARD */
+.contacto-card-info .card-body {
+    display: block;
+    text-align: left;
+}
+
+/* COLORES */
+.bg-purple {
+    background-color: purple !important;
+    color: white !important;
+}
+
+.text-purple {
+    color: purple !important;
+}
+
+/* BOLETERÍA */
+.boleteria-card .card-body {
+    padding: 30px;
+    text-align: center;
+}
+
+/* RESPONSIVE EXTRA */
+@media (max-width: 768px) {
+    .evento-img {
+        height: 180px;
+    }
+
+    .contacto-card .card-body {
+        padding: 20px;
+    }
+}
