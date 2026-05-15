@@ -87,8 +87,7 @@
                                     <div class="card-body text-center d-flex flex-column">
                                         <h5>La Traviata</h5>
                                         <p class="text-muted">07 Junio</p>
-                                        <p class="evento-precio">$32.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.')">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +99,7 @@
                                         <h5>Concierto Sinfónico</h5>
                                         <p class="text-muted">14 Junio</p>
                                         <p class="evento-precio">$28.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.');">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +111,7 @@
                                         <h5>Romeo y Julieta</h5>
                                         <p class="text-muted">30 Mayo</p>
                                         <p class="evento-precio">$28.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.');">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +132,7 @@
                                         <h5>Hamlet</h5>
                                         <p class="text-muted">07 Junio</p>
                                         <p class="evento-precio">$32.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.');">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +144,7 @@
                                         <h5>Bernarda Alba</h5>
                                         <p class="text-muted">14 Junio</p>
                                         <p class="evento-precio">$28.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.');">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +156,7 @@
                                         <h5>Lago de los Cisnes</h5>
                                         <p class="text-muted">30 Mayo</p>
                                         <p class="evento-precio">$28.000</p>
-                                        <button class="btn btn-purple mt-auto">Comprar</button>
+                                        <button class="btn btn-purple mt-auto" onclick="alert('✅ Gracias por tu interés. Pronto nos comunicaremos contigo.');">Comprar entrada</button>
                                     </div>
                                 </div>
                             </div>
@@ -184,3 +183,4 @@
 </div>
 
 @endsection
+
