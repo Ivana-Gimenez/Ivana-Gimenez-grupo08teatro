@@ -44,12 +44,41 @@
           <a class="nav-link text-white" href="/registro">Registrarse</a>
         </li>
 
-        <!-- Login -->
+        <!-- Login 
         <li class="nav-item">
           <a class="nav-link text-white" href="/login">Inicio Sesión</a>
         </li>
 
-      </ul>
+      </ul> -- -->
+
+          @auth
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                {{ auth()->user()->name }}
+            </a>
+            <ul class="dropdown-menu">
+                @if(auth()->user()->rol_id == 1)
+                    <li><a class="dropdown-item" href="/admin">Panel Admin</a></li>
+                @else
+                    <li><a class="dropdown-item" href="/cliente">Mi Cuenta</a></li>
+                @endif
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    @else
+        <li class="nav-item">
+            <a class="nav-link text-white" href="/login">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="/registro">Registrarse</a>
+        </li>
+    @endauth
 
       <!-- Buscador -->
 <form class="d-flex" role="search" action="/en-construccion" method="GET">
