@@ -20,12 +20,7 @@
           <a class="nav-link text-white" href="/talleres">Talleres</a>
         </li>
 
-        <!-- Boletería
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/boleteria">Boletería</a>
-        </li> -->
-
-        <!-- Más Info -->
+        <!-- Más Info Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
             Más Info
@@ -35,56 +30,48 @@
             <li><a class="dropdown-item" href="/quienes-somos">👥 Quiénes Somos</a></li>
             <li><a class="dropdown-item" href="/terminos">📜 Términos y Usos</a></li>
             <li><a class="dropdown-item" href="/boleteria">🎟️ Boletería</a></li>
-            <!-- <li><a class="dropdown-item" href="/consultas">❓ Consultas</a></li> -->
           </ul>
         </li>
 
-        <!-- Registro -->
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/registro">Registrarse</a>
-        </li>
+      </ul>
 
-        <!-- Login 
-        <li class="nav-item">
-          <a class="nav-link text-white" href="/login">Inicio Sesión</a>
-        </li>
-
-      </ul> -- -->
-
-          @auth
-        <li class="nav-item dropdown">
+      <!-- Sección de usuario (login/registro o perfil) -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        @auth
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                {{ auth()->user()->name }}
+              {{ auth()->user()->name }}
             </a>
-            <ul class="dropdown-menu">
-                @if(auth()->user()->rol_id == 1)
-                    <li><a class="dropdown-item" href="/admin">Panel Admin</a></li>
-                @else
-                    <li><a class="dropdown-item" href="/cliente">Mi Cuenta</a></li>
-                @endif
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                    <form method="POST" action="/logout">
-                        @csrf
-                        <button type="submit" class="dropdown-item">Cerrar Sesión</button>
-                    </form>
-                </li>
+            <ul class="dropdown-menu dropdown-menu-end">
+              @if(auth()->user()->rol_id == 1)
+                <li><a class="dropdown-item" href="/admin">Panel Admin</a></li>
+              @else
+                <li><a class="dropdown-item" href="/cliente">Mi Cuenta</a></li>
+              @endif
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form method="POST" action="/logout">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                </form>
+              </li>
             </ul>
-        </li>
-    @else
-        <li class="nav-item">
+          </li>
+        @else
+          <li class="nav-item">
             <a class="nav-link text-white" href="/login">Iniciar Sesión</a>
-        </li>
-        <li class="nav-item">
+          </li>
+          <li class="nav-item">
             <a class="nav-link text-white" href="/registro">Registrarse</a>
-        </li>
-    @endauth
+          </li>
+        @endauth
+      </ul>
 
       <!-- Buscador -->
-<form class="d-flex" role="search" action="/en-construccion" method="GET">
-    <input class="form-control me-2" type="search" placeholder="Buscar">
-    <button class="btn btn-outline-light" type="submit">Buscar</button>
-</form>
+      <form class="d-flex" role="search" action="/en-construccion" method="GET">
+        <input class="form-control me-2" type="search" placeholder="Buscar">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </form>
 
     </div>
   </div>

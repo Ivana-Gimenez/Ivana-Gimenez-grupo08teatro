@@ -8,6 +8,6 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        return view('backend.cliente');
+        return view('backend.usuarios.cliente');
     }
 }
