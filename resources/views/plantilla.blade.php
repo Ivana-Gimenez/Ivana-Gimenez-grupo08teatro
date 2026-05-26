@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 </head>
 
-<body>
+<body style="margin: 0; padding: 0;">
 
     @include('partes.navbar')
 
     <!-- CONTENIDO DE LAS VISTAS -->
-    <main class="main-content">
+    <!--<main class="main-content">-->
+    <main>
+
         @yield('content')
     </main>
 

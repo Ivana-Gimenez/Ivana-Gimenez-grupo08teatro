@@ -17,6 +17,7 @@
                 <ul class="list-unstyled">
                     <li><a href="/quienes-somos" class="text-white text-decoration-none small">Quiénes Somos</a></li>
                     <li><a href="/terminos" class="text-white text-decoration-none small">Termino y Usos</a></li>
+                    <li><a href="/consultas" class="text-white text-decoration-none small">📩 Consultas</a></li>
                 </ul>
             </div>
             <!-- Columna 3: Redes sociales alineadas a la derecha -->
