@@ -26,7 +26,7 @@
                                 <td>#{{ $compra->id }}</td>
                                 <td>{{ \Carbon\Carbon::parse($compra->created_at)->format('d/m/Y H:i') }}</td>
                                 <td>
-                                    @foreach($compra->entradas as $entrada)
+                                    @foreach($compra->detalles as $entrada)
                                         <strong>{{ $entrada->evento->nombre }}</strong> ({{ $entrada->cantidad }} x ${{ number_format($entrada->precio_unitario, 0, ',', '.') }})<br>
                                     @endforeach
                                 </td>

@@ -25,9 +25,7 @@
                     <p class="taller-desc">Construcción y manipulación de títeres.</p>
                     <p class="taller-info"><strong>Inicio: 6 de junio · Lunes 14:30 a 16:30</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -41,9 +39,7 @@
                     <p class="taller-desc">Nivel intermedio y avanzado.</p>
                     <p class="taller-info"><strong>Martes y jueves · 15 a 17 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -57,9 +53,7 @@
                     <p class="taller-desc">Producción y edición visual.</p>
                     <p class="taller-info"><strong>Lunes · 17 a 18:30 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -73,9 +67,7 @@
                     <p class="taller-desc">Expresión corporal.</p>
                     <p class="taller-info"><strong>Martes y jueves · 10 a 12 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -89,9 +81,7 @@
                     <p class="taller-desc">Técnica y elegancia.</p>
                     <p class="taller-info"><strong>Viernes · 14 a 18 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -105,8 +95,7 @@
                     <p class="taller-desc">Espacio creativo.</p>
                     <p class="taller-info"><strong>Martes y jueves · 21:30 a 23 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                     </a>
                 </div>
             </div>
@@ -121,9 +110,7 @@
                     <p class="taller-desc">Improvisación y personajes.</p>
                     <p class="taller-info"><strong>Lunes · 18 a 20 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -137,9 +124,7 @@
                     <p class="taller-desc">Movimiento libre y creatividad.</p>
                     <p class="taller-info"><strong>Miércoles · 10 a 12 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -153,9 +138,7 @@
                     <p class="taller-desc">Guión, grabación y edición.</p>
                     <p class="taller-info"><strong>Viernes · 18 a 20 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -169,9 +152,7 @@
                     <p class="taller-desc">Juegos teatrales para niños.</p>
                     <p class="taller-info"><strong>Sábados · 11 a 13 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -185,9 +166,7 @@
                     <p class="taller-desc">Voz, cuerpo y presencia.</p>
                     <p class="taller-info"><strong>Jueves · 9 a 10 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -201,9 +180,7 @@
                     <p class="taller-desc">Exploración interdisciplinaria.</p>
                     <p class="taller-info"><strong>Domingos · 16 a 18 hs</strong></p>
 
-                    <a href="/en-construccion" class="btn btn-purple w-100 mt-auto">
-                        Inscribirse
-                    </a>
+                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
                 </div>
             </div>
         </div>
@@ -228,4 +205,11 @@
     </nav>
 
 </div>
+
+<script>
+    function mostrarContacto() {
+        alert("📞 Para inscribirte en los talleres, comunicate al:\n\n3794261496\n\n📧 info@teatrodelaciudad.com\n\n¡Te esperamos!");
+    }
+</script>
+
 @endsection

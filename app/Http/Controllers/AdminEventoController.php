@@ -54,7 +54,7 @@ class AdminEventoController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+    {   
         $evento = Evento::findOrFail($id);
 
         $request->validate([

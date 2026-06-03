@@ -15,11 +15,11 @@ class ClienteController extends Controller
 
     public function historial()
     {
-    $compras = Compra::where('user_id', Auth::id())
-                     ->with('entradas.evento')
-                     ->orderBy('created_at', 'desc')
-                     ->get();
+        $compras = Compra::where('user_id', Auth::id())
+            ->with('detalles.evento')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-    return view('backend.cliente.historial', compact('compras'));
+        return view('backend.cliente.historial', compact('compras'));
     }
 }

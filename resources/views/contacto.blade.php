@@ -23,7 +23,9 @@
                 </div>
 
                 <div class="card-body p-4">
-                    <form action="/en-construccion" method="GET" class="w-100">
+                    <form action="/contacto" method="POST">
+                       @csrf
+                       
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Nombre</label>
@@ -47,14 +49,14 @@
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Mensaje</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                            <textarea name="mensaje" class="form-control" rows="5" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-purple w-100">
                             Enviar mensaje
                         </button>
-
-                    </form>
+                  </form>
+                    
                 </div>
             </div>
         </div>
@@ -72,7 +74,7 @@
 
                     <p><strong>📌 Dirección:</strong> Pasaje Villanueva 1470</p>
                     <p><strong>📞 Teléfono:</strong> 379-4699617</p>
-                    <p><strong>✉️ Email:</strong> ctesteatrodelaciudad@gmail.com</p>
+                    <p><strong>✉️ Email:</strong>teatrodelaciudad788@gmail.com</p>
 
                     <hr>
 

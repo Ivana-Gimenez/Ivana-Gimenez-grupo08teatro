@@ -229,7 +229,7 @@
             <p><strong>📱 Instagram / Facebook:</strong> @teatrodelaciudadctes</p>
             <p><strong>📍 Dirección:</strong> Pasaje Villanueva 1470, Corrientes</p>
             <p><strong>📞 Teléfono:</strong> 3794 75-4083</p>
-            <p><strong>✉️ Correo:</strong> teatrodelaciudadctes@gmail.com (no está en el PDF pero podés agregarlo)</p>
+            <p><strong>✉️ Correo:</strong> teatrodelaciudad788@gmail.com </p>
         </div>
     </div>
 </div>

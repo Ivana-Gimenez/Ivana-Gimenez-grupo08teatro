@@ -35,12 +35,12 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled">
-                        <li class="mb-2">💳 Tarjetas de crédito (Visa, Mastercard, American Express)</li>
+                        <li class="mb-2">💳 Tarjetas de crédito (Visa, Mastercard)</li>
                         <li class="mb-2">💳 Tarjetas de débito</li>
                         <li class="mb-2">📱 Mercado Pago</li>
-                        <li class="mb-2">📲 QR (Mercado Pago, MODO, Cuenta DNI)</li>
+                        <li class="mb-2">📲 QR Mercado Pago</li>
                         <li class="mb-2">💰 Efectivo (en boletería)</li>
-                        <li class="mb-2">📲 Transferencia bancaria</li>
+                        <!--<li class="mb-2">📲 Transferencia bancaria</li>-->
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="card-body">
                     <ul class="list-unstyled">
                         <li class="mb-2">📧 <strong>Entrada digital:</strong> Inmediata después de la compra (recibís un email con tu entrada).</li>
-                        <li class="mb-2">🎫 <strong>Sticker digital:</strong> Disponible para descargar inmediatamente desde tu cuenta.</li>
+                       <!-- <li class="mb-2">🎫 <strong>Sticker digital:</strong> Disponible para descargar inmediatamente desde tu cuenta.</li>-->
                     </ul>
                 </div>
             </div>

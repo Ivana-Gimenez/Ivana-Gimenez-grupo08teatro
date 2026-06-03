@@ -7,7 +7,7 @@
             <h4>✏️ Editar Evento</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.eventos.update', $evento->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="/admin/eventos/{{ $evento->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -41,7 +41,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Imagen actual</label>
                         @if($evento->imagen)
-                            <img src="{{ asset('img/eventos/' . $evento->imagen) }}" width="80" class="d-block mb-2">
+                            <img src="{{ asset('img/ProxEventos/' . $evento->imagen) }}" width="80" class="d-block mb-2">
                         @endif
                         <input type="file" name="imagen" class="form-control" accept="image/*">
                         <small class="text-muted">Dejar vacío para mantener la imagen actual</small>

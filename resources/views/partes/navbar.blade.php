@@ -33,6 +33,8 @@
                                 <li><a class="dropdown-item" href="/admin">Panel Admin</a></li>
                                 <li><a class="dropdown-item" href="/admin/eventos">🎟️ Gestionar Eventos</a></li>
                                 <li><a class="dropdown-item" href="/admin/consultas">📩 Ver Consultas</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.usuarios') }}">👥 Ver Usuarios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.reportes.ventas') }}">📊 Ver Ventas</a></li>
                             @else
                                 <li><a class="dropdown-item" href="/cliente">Mi Cuenta</a></li>
                                 <li><a class="dropdown-item" href="/cliente/historial">📜 Historial de compras</a></li>

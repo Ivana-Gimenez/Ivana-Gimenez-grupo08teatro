@@ -9,12 +9,6 @@
                     <h4>Iniciar Sesión</h4>
                 </div>
                 <div class="card-body">
-                    @if ($errors->any())
-                      <div class="alert alert-danger">
-                           {{ $errors->first() }}
-                        </div>
-                          @endif
-                          
                     <form action="/login" method="POST">
                         @csrf
                         <div class="mb-3">

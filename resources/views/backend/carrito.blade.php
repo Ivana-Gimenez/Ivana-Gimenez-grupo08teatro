@@ -25,9 +25,18 @@
                     <tr>
                         <td>{{ $item->evento->nombre }}</td>
                         <td>${{ number_format($item->evento->precio, 0, ',', '.') }}</td>
-                        <td>{{ $item->cantidad }}</td>
-                        <td>${{ number_format($item->cantidad * $item->evento->precio, 0, ',', '.') }}</td>
+                        <!-- Cantidad con botón Actualizar -->
                         <td>
+                            <form action="{{ route('carrito.actualizar', $item->id) }}" method="POST" class="d-flex gap-2">
+                                @csrf
+                                @method('PATCH')
+                                <input type="number" name="cantidad" value="{{ $item->cantidad }}" min="1" class="form-control" style="width: 70px;">
+                                <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+                            </form>
+                        </td>
+                             <td class="fw-bold">${{ number_format($item->cantidad * $item->evento->precio, 0, ',', '.') }}</td>
+                        <td>
+                            <!-- Botón Eliminar (ya existente) -->
                             <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -64,6 +73,16 @@
             </form>
             <form action="{{ route('carrito.finalizar') }}" method="POST">
                 @csrf
+                <input type="hidden" name="metodo_pago_id" id="metodo_pago_id">
+                <div class="mb-3">
+                     <label>Método de pago</label>
+                       <select name="metodo_pago_id" class="form-control" required>
+                         <option value="">Seleccioná...</option>
+                         @foreach($metodosPago as $mp)
+                           <option value="{{ $mp->id }}">{{ $mp->nombre }}</option>
+                          @endforeach
+                       </select>
+                </div>
                 <button type="submit" class="btn btn-success">Finalizar compra</button>
             </form>
         </div>

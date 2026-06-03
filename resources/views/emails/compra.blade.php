@@ -25,9 +25,9 @@
 
             <h4>Detalle de tu compra:</h4>
             <ul>
-                @foreach($compra->entradas as $entrada)
+                @foreach($compra->detalles as $detalle)
                     <li>
-                        <strong>{{ $entrada->evento->nombre }}</strong><br>
+                        <strong>{{ $detalle->evento->nombre }}</strong><br>
                         Cantidad: {{ $entrada->cantidad }} x ${{ number_format($entrada->precio_unitario, 0, ',', '.') }}
                     </li>
                 @endforeach

@@ -45,7 +45,7 @@
                             <h5 class="card-title">{{ $evento->nombre }}</h5>
                             <p class="card-text">{{ \Carbon\Carbon::parse($evento->fecha)->format('d/m/Y') }} - {{ \Carbon\Carbon::parse($evento->hora)->format('H:i') }}</p>
                             <p class="fw-bold text-purple">${{ number_format($evento->precio, 0, ',', '.') }}</p>
-                            
+                            <p class="text-muted small">🎟️ Quedan {{ $evento->stock_disponible }} entradas</p>
                             <form action="{{ route('carrito.agregar', $evento->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-purple w-100">Comprar entrada</button>

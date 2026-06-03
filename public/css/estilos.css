@@ -553,11 +553,13 @@ main {
     }
 
 
-
-
-    <style>
     .carousel-img {
         height: 400px;
         object-fit: cover;
     }
-</style>
+
+
+    
+    .bg-purple { background-color: purple; }
+
+
