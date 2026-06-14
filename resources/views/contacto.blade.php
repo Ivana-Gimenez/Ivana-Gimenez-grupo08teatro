@@ -29,22 +29,22 @@
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Tu nombre">
+                             <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
                         </div>
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Apellido</label>
-                            <input type="text" class="form-control" placeholder="Tu apellido">
+                            <input type="text" name="apellido" class="form-control" placeholder="Tu apellido" required>
                         </div>
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Correo electrónico</label>
-                            <input type="email" class="form-control" placeholder="tu@email.com">
+                            <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
                         </div>
 
                         <div class="mb-3 text-start">
                             <label class="form-label fw-bold">Teléfono</label>
-                            <input type="tel" class="form-control" placeholder="Ej: 379 123 4567">
+                             <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
                         </div>
 
                         <div class="mb-3 text-start">

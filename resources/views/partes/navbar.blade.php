@@ -59,8 +59,9 @@
                 @endauth
             </ul>
 
-            <form class="d-flex" role="search" action="/en-construccion" method="GET">
-                <input class="form-control me-2" type="search" placeholder="Buscar">
+            <form class="d-flex" role="search" action="/buscar" method="GET">
+                <!--<input class="form-control me-2" type="search" placeholder="Buscar">-->
+                <input class="form-control me-2" type="search" name="q" placeholder="Buscar eventos" aria-label="Buscar">
                 <button class="btn btn-outline-light" type="submit">Buscar</button>
             </form>
         </div>

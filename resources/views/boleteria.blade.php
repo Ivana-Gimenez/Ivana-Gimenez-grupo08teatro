@@ -39,7 +39,7 @@
                         <li class="mb-2">💳 Tarjetas de débito</li>
                         <li class="mb-2">📱 Mercado Pago</li>
                         <li class="mb-2">📲 QR Mercado Pago</li>
-                        <li class="mb-2">💰 Efectivo (en boletería)</li>
+                        <!--<li class="mb-2">💰 Efectivo (en boletería)</li>-->
                         <!--<li class="mb-2">📲 Transferencia bancaria</li>-->
                     </ul>
                 </div>

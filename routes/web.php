@@ -109,3 +109,5 @@ Route::post('/consultas', [App\Http\Controllers\ConsultaController::class, 'envi
 Route::get('/admin/reportes/ventas', [App\Http\Controllers\ReporteController::class, 'ventas'])->name('admin.reportes.ventas');
 
 Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'enviar'])->name('contacto.enviar');
+
+Route::get('/buscar', [EventoController::class, 'buscar'])->name('buscar');

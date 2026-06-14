@@ -9,18 +9,26 @@ class ContactoController extends Controller
 {
     public function enviar(Request $request)
     {
+        // Validar los datos
         $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
             'mensaje' => 'required',
         ]);
 
-        $data = $request->all();
+        // Datos del formulario
+        $data = [
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'mensaje' => $request->mensaje,
+        ];
 
-        Mail::send('emails.contacto', $data, function ($message) use ($data) {
-            $message->to('ctesteatrodelaciudad@gmail.com')
-                    ->subject('Nuevo mensaje de contacto')
-                    ->replyTo($data['email'], $data['nombre']);
+        // Enviar email
+        Mail::send('emails.contacto', $data, function ($message) {
+            $message->to('teatrodelaciudad788@gmail.com')
+                    ->subject('Nuevo mensaje de contacto');
         });
 
         return redirect('/contacto')->with('success', 'Mensaje enviado correctamente');
