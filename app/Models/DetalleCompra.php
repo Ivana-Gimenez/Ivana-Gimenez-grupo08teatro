@@ -9,8 +9,14 @@ class DetalleCompra extends Model
 {
     use HasFactory;
 
+    // =========================
+    // TABLA DE LA BD
+    // =========================
     protected $table = 'detalle_compras';
 
+    // =========================
+    // CAMPOS QUE SE PUEDEN GUARDAR
+    // =========================
     protected $fillable = [
         'compra_id',
         'evento_id',
@@ -19,11 +25,17 @@ class DetalleCompra extends Model
         'subtotal',
     ];
 
+    // =========================
+    // RELACIÓN: pertenece a una compra
+    // =========================
     public function compra()
     {
         return $this->belongsTo(Compra::class);
     }
 
+    // =========================
+    // RELACIÓN: pertenece a un evento
+    // =========================
     public function evento()
     {
         return $this->belongsTo(Evento::class);

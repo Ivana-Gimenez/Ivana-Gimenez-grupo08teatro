@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teatro de la Ciudad</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Teatro de la Ciudad</title>
 
+        {{-- VITE --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-</head>
+        {{-- CSS PROPIO (DESPUÉS de Bootstrap) --}}
+        <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
-<body style="margin: 0; padding: 0;">
+        {{-- Bootstrap Icons --}}
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    @include('partes.navbar')
+    </head>
 
-    <!-- CONTENIDO DE LAS VISTAS -->
-    <!--<main class="main-content">-->
-    <main>
+    <body class="d-flex flex-column min-vh-100">
 
-        @yield('content')
-    </main>
+        @include('partes.navbar')
 
-    @include('partes.footer')
+        <main class="flex-grow-1">
+            @yield('content')
+        </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/talleres.js') }}"></script>
-</body>
+        @include('partes.footer')
+
+        {{-- JS EXTRA --}}
+        <script src="{{ asset('js/talleres.js') }}"></script>
+
+    </body>
+
 </html>

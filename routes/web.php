@@ -1,111 +1,206 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AdminConsultaController;
 use App\Http\Controllers\AdminEventoController;
+use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\AdminTallerController;
+use App\Http\Controllers\TallerController;
 
-// ============================================
-// RUTAS PÚBLICAS
-// ============================================
+/*
+|--------------------------------------------------------------------------
+| PÚBLICO
+|--------------------------------------------------------------------------
+*/
 
-// Ruta principal - muestra los eventos
-Route::get('/', [EventoController::class, 'index']);
+Route::get('/', [EventoController::class, 'index'])->name('home');
 
-// Páginas estáticas
-Route::get('/quienes-somos', function () {
-    return view('quienes-somos');
-});
+Route::get('/eventos/proximos', [EventoController::class, 'proximos'])
+    ->name('eventos.proximos');
 
-Route::get('/boleteria', function () {
-    return view('boleteria');
-});
+Route::get('/eventos/{id}', [EventoController::class, 'show'])
+    ->name('eventos.show');
 
-Route::get('/contacto', function () {
-    return view('contacto');
-});
+Route::get('/buscar', [EventoController::class, 'buscar'])
+    ->name('eventos.buscar');
 
-Route::get('/terminos', function () {
-    return view('terminos');
-});
+Route::view('/quienes-somos', 'quienes-somos');
+Route::view('/boleteria', 'boleteria');
+Route::view('/contacto', 'contacto');
+Route::view('/terminos', 'terminos');
 
-Route::get('/consultas', function () {
-    return view('consultas');
-});
+/* TALLERES */
+Route::get('/talleres', [TallerController::class, 'index'])
+    ->name('talleres.index');
 
-Route::get('/talleres', function () {
-    return view('talleres');
-});
 
-// ============================================
-// RUTAS DE AUTENTICACIÓN
-// ============================================
-Route::get('/registro', [AuthController::class, 'formularioRegistro'])->name('registro');
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/registro', [AuthController::class, 'formularioRegistro'])
+    ->name('registro');
+
 Route::post('/registro', [AuthController::class, 'registrar']);
-Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
+
+Route::get('/login', [AuthController::class, 'formularioLogin'])
+    ->name('login');
+
 Route::post('/login', [AuthController::class, 'autenticar']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// ============================================
-// RUTAS PROTEGIDAS POR ROL
-// ============================================
-Route::middleware(['auth', 'rol:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'dashboard']);
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
-    // Rutas de eventos (manuales)
-    Route::get('/admin/eventos', [AdminEventoController::class, 'index'])->name('admin.eventos.index');
-    Route::get('/admin/eventos/create', [AdminEventoController::class, 'create'])->name('admin.eventos.create');
-    Route::post('/admin/eventos', [AdminEventoController::class, 'store'])->name('admin.eventos.store');
-    Route::get('/admin/eventos/{id}/edit', [AdminEventoController::class, 'edit'])->name('admin.eventos.edit');
-    Route::put('/admin/eventos/{id}', [AdminEventoController::class, 'update'])->name('admin.eventos.update');
-    Route::delete('/admin/eventos/{id}', [AdminEventoController::class, 'destroy'])->name('admin.eventos.destroy');
-     // Rutas de consultas
-    Route::get('/admin/consultas', [AdminConsultaController::class, 'index'])->name('admin.consultas.index');
-    Route::patch('/admin/consultas/{id}/leida', [AdminConsultaController::class, 'marcarLeida'])->name('admin.consultas.leida');
-    Route::delete('/admin/consultas/{id}', [AdminConsultaController::class, 'destroy'])->name('admin.consultas.destroy');
-    // Rutas ver Usuarios
-    Route::get('/admin/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
-    Route::get('/admin/reportes/ventas', [ReporteController::class, 'ventas'])->name('admin.reportes.ventas');
+
+/*
+|--------------------------------------------------------------------------
+| CONSULTAS (PÚBLICO)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/consultas', [ConsultaController::class, 'showForm'])
+    ->name('consultas.form');
+
+Route::post('/consultas', [ConsultaController::class, 'enviar'])
+    ->name('consultas.enviar');
+
+Route::post('/contacto', [ContactoController::class, 'enviar'])
+    ->name('contacto.enviar');
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('admin')
+    ->middleware(['auth', 'rol:admin'])
+    ->group(function () {
+
+    Route::get('/', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+
+    /* EVENTOS ADMIN */
+    Route::resource('eventos', AdminEventoController::class)
+        ->names('admin.eventos');
+
+    /* TALLERES ADMIN */
+    Route::get('/talleres', [AdminTallerController::class, 'index'])
+        ->name('admin.talleres.index');
+
+    Route::get('/talleres/create', [AdminTallerController::class, 'create'])
+        ->name('admin.talleres.create');
+
+    Route::post('/talleres', [AdminTallerController::class, 'store'])
+        ->name('admin.talleres.store');
+
+    Route::get('/talleres/{id}/edit', [AdminTallerController::class, 'edit'])
+        ->name('admin.talleres.edit');
+
+    Route::put('/talleres/{id}', [AdminTallerController::class, 'update'])
+        ->name('admin.talleres.update');
+
+    Route::delete('/talleres/{id}', [AdminTallerController::class, 'destroy'])
+        ->name('admin.talleres.destroy');
+
+    Route::post('/talleres/{id}/restore', [AdminTallerController::class, 'restore'])
+        ->name('admin.talleres.restore');
+
+    Route::get('/talleres/{id}/inscriptos', [AdminTallerController::class, 'inscriptos'])
+        ->name('admin.talleres.inscriptos');
+
+    /* CONSULTAS ADMIN */
+    Route::get('/consultas', [AdminConsultaController::class, 'index'])
+        ->name('admin.consultas.index');
+
+    Route::patch('/consultas/{id}/leida', [AdminConsultaController::class, 'marcarLeida'])
+        ->name('admin.consultas.leida');
+
+    Route::delete('/consultas/{id}', [AdminConsultaController::class, 'destroy'])
+        ->name('admin.consultas.destroy');
+
+    /* USUARIOS */
+    Route::get('/usuarios', [AdminController::class, 'usuarios'])
+        ->name('admin.usuarios.index');
+
+    /* REPORTES */
+    Route::get('/reportes/ventas', [ReporteController::class, 'ventas'])
+        ->name('admin.reportes.ventas');
+
+    /* COMPRAS */
+    Route::get('/compras', [AdminController::class, 'comprasPendientes'])
+        ->name('admin.compras.index');
 });
-    
+
+
+/*
+|--------------------------------------------------------------------------
+| CLIENTE
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('cliente')
+    ->middleware(['auth', 'rol:cliente'])
+    ->group(function () {
+
+    Route::get('/', [ClienteController::class, 'index'])
+        ->name('cliente.dashboard');
+
+    Route::get('/historial', [ClienteController::class, 'historial'])
+        ->name('cliente.historial');
+
+    Route::get('/talleres', [ClienteController::class, 'talleres'])
+        ->name('cliente.talleres');
+
+    Route::delete('/talleres/{id}/cancelar', [TallerController::class, 'cancelarInscripcion'])
+        ->name('cliente.talleres.cancelar');
+
+    Route::get('/perfil', [ClienteController::class, 'perfil'])
+        ->name('cliente.perfil');
+
+    Route::post('/perfil', [ClienteController::class, 'actualizarPerfil'])
+        ->name('cliente.perfil.update');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| CARRITO
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware(['auth', 'rol:cliente'])->group(function () {
-    Route::get('/cliente', [ClienteController::class, 'index']);
-    Route::get('/cliente/historial', [App\Http\Controllers\ClienteController::class, 'historial'])->name('cliente.historial');
+
+    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])
+        ->name('carrito.agregar');
+
+    Route::get('/carrito', [CarritoController::class, 'verCarrito'])
+        ->name('carrito.ver');
+
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])
+        ->name('carrito.eliminar');
+
+    Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])
+        ->name('carrito.vaciar');
+
+    Route::patch('/carrito/actualizar/{id}', [CarritoController::class, 'actualizarCantidad'])
+        ->name('carrito.actualizar');
+
+    Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])
+        ->name('carrito.finalizar');
+
+    Route::post('/compra/{id}/confirmar', [CompraController::class, 'confirmarPago'])
+        ->name('compra.confirmar');
 });
-
-// ============================================
-// RUTA DE PRUEBA
-// ============================================
-Route::get('/prueba-redireccion', function () {
-    return "Si ves esto, el enrutador funciona.";
-});
-
-// ============================================
-// PÁGINA EN CONSTRUCCIÓN (si la necesitas, debe ir al final)
-// ============================================
-Route::get('/en-construccion', function () {
-    return view('en-construccion');
-});
-
-// Rutas del carrito (requieren autenticación)
-Route::middleware(['auth'])->group(function () {
-    Route::post('/carrito/agregar/{id}', [App\Http\Controllers\CarritoController::class, 'agregar'])->name('carrito.agregar');
-    Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'verCarrito'])->name('carrito.ver');
-    Route::delete('/carrito/eliminar/{id}', [App\Http\Controllers\CarritoController::class, 'eliminar'])->name('carrito.eliminar');
-    Route::post('/carrito/vaciar', [App\Http\Controllers\CarritoController::class, 'vaciar'])->name('carrito.vaciar');
-    Route::patch('/carrito/actualizar/{id}', [App\Http\Controllers\CarritoController::class, 'actualizarCantidad'])->name('carrito.actualizar');
-});
-
-Route::post('/carrito/finalizar', [App\Http\Controllers\CarritoController::class, 'finalizarCompra'])->name('carrito.finalizar');
-
-Route::get('/consultas', [App\Http\Controllers\ConsultaController::class, 'showForm'])->name('consultas.form');
-Route::post('/consultas', [App\Http\Controllers\ConsultaController::class, 'enviar'])->name('consultas.enviar');
-
-
-Route::get('/admin/reportes/ventas', [App\Http\Controllers\ReporteController::class, 'ventas'])->name('admin.reportes.ventas');
-
-Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'enviar'])->name('contacto.enviar');

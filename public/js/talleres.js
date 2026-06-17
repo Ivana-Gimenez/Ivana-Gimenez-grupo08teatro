@@ -1,10 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ✔ SOLO se ejecuta si existen talleres
     const items = document.querySelectorAll(".taller-item");
 
-    if (!items.length) return; // 🔥 evita interferir en otras páginas
+    if (!items.length) return;
 
     const perPage = 6;
     let currentPage = 1;
@@ -19,13 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const end = start + perPage;
 
         items.forEach((item, index) => {
-            item.style.display = (index >= start && index < end) ? "" : "none";
+            item.style.display = (index >= start && index < end)
+                ? "block"
+                : "none";
         });
 
-        if (pageNumber) pageNumber.innerText = page;
+        if (pageNumber) pageNumber.textContent = page;
 
         if (prev) prev.parentElement.classList.toggle("disabled", page === 1);
-        if (next) next.parentElement.classList.toggle("disabled", page * perPage >= items.length);
+        if (next) next.parentElement.classList.toggle("disabled", end >= items.length);
     }
 
     if (next) {
@@ -51,4 +51,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     showPage(currentPage);
+
 });
+
+// Mostrar / ocultar contraseña
+function togglePassword() {
+
+    const password = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if (password.type === 'password') {
+        password.type = 'text';
+        eyeIcon.classList.remove('bi-eye');
+        eyeIcon.classList.add('bi-eye-slash');
+    } else {
+        password.type = 'password';
+        eyeIcon.classList.remove('bi-eye-slash');
+        eyeIcon.classList.add('bi-eye');
+    }
+}

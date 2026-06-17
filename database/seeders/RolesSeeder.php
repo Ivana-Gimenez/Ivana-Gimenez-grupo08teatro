@@ -9,13 +9,20 @@ class RolesSeeder extends Seeder
 {
     public function run(): void
     {
-        $roles = [
-            ['nombre' => 'admin', 'descripcion' => 'Administrador del sistema'],
-            ['nombre' => 'cliente', 'descripcion' => 'Cliente del teatro'],
-        ];
+        Rol::updateOrCreate(
+            ['id' => 1],
+            [
+                'nombre' => 'admin',
+                'descripcion' => 'Administrador del sistema'
+            ]
+        );
 
-        foreach ($roles as $rol) {
-            Rol::firstOrCreate(['nombre' => $rol['nombre']], $rol);
-        }
+        Rol::updateOrCreate(
+            ['id' => 2],
+            [
+                'nombre' => 'cliente',
+                'descripcion' => 'Cliente del teatro'
+            ]
+        );
     }
 }

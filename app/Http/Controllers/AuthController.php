@@ -1,79 +1,134 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Log;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Carrito;
 
 class AuthController extends Controller
 {
-    // Muestra el formulario de registro
+    // =========================
+    // FORM REGISTRO
+    // =========================
     public function formularioRegistro()
     {
         return view('backend.usuarios.registro');
     }
 
-   public function registrar(Request $request)
-  {
-     
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|confirmed',
-    ]);
+    // =========================
+    // REGISTRAR USUARIO
+    // =========================
+    public function registrar(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => bcrypt($request->password),
-        'rol_id' => 2,
-    ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'rol_id' => 2,
+        ]);
 
-    if (!$user) {
-        return redirect('/en-construccion')->with('error', 'No se pudo crear el usuario');
+        if (!$user) {
+            return redirect('/en-construccion')
+                ->with('error', 'No se pudo crear el usuario');
+        }
+
+        Auth::login($user);
+
+        return redirect('/cliente');
     }
 
-    Auth::login($user);
-
-    return redirect('/cliente');
-  }
-
-    // Muestra el formulario de login
+    // =========================
+    // FORM LOGIN
+    // =========================
     public function formularioLogin()
     {
         return view('backend.usuarios.login');
     }
 
-    // Procesa el login
+    // =========================
+    // LOGIN + FUSIÓN CARRITO
+    // =========================
     public function autenticar(Request $request)
     {
         $credenciales = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Ingresá un correo electrónico válido.',
+            'password.required' => 'La contraseña es obligatoria.',
         ]);
 
         if (Auth::attempt($credenciales)) {
-            $request->session()->regenerate();
-            $user = Auth::user();
 
-            if ($user->rol_id == 1) { // 1 = admin
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+            $sessionId = session()->getId();
+
+            // =========================
+            // FUSIÓN DE CARRITO
+            // =========================
+            $carritoSesion = Carrito::where('session_id', $sessionId)->get();
+
+            foreach ($carritoSesion as $item) {
+
+                $existente = Carrito::where('user_id', $user->id)
+                    ->where('evento_id', $item->evento_id)
+                    ->first();
+
+                if ($existente) {
+
+                    // sumar cantidades si ya existe
+                    $existente->increment('cantidad', $item->cantidad);
+
+                    $item->delete();
+
+                } else {
+
+                    // asignar al usuario logueado
+                    $item->update([
+                        'user_id' => $user->id,
+                        'session_id' => null
+                    ]);
+                }
+            }
+
+            // =========================
+            // REDIRECCIÓN POR ROL
+            // =========================
+            if ($user->rol_id == 1) {
                 return redirect('/admin');
             }
+
             return redirect('/cliente');
         }
 
-        return back()->withErrors([
-            'email' => 'Email o contraseña incorrectos',
-        ]);
+        return back()
+            ->withInput()
+            ->withErrors([
+                'login' => 'Correo o contraseña incorrectos.'
+            ]);
     }
 
-    // Cierra sesión
+    // =========================
+    // LOGOUT
+    // =========================
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 }

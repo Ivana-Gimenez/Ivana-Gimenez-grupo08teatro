@@ -9,7 +9,16 @@ class MetodoPago extends Model
 {
     use HasFactory;
 
-    protected $table = 'metodos_pago';
+    protected $table = 'metodo_pagos';
 
-    protected $fillable = ['nombre', 'activo'];
+    protected $fillable = [
+        'nombre',
+        'activo',
+    ];
+
+    // Solo métodos activos
+    public function scopeActivos($query)
+    {
+        return $query->where('activo', true);
+    }
 }

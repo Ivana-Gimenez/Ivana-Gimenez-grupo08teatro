@@ -1,40 +1,19 @@
 /* =========================
    BASE
 ========================= */
-html, body {
+html,
+body {
     height: 100%;
-    margin: 0;
+    padding-top: 45px;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    padding-top: 90px;
-} /* ← ESTE } faltaba */
-
-/* =========================
-   FOOTER
-========================= */
-footer h5 {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
 }
 
-footer p {
-    font-size: 0.95rem;
-    margin-bottom: 5px;
-}
-
-footer a {
-    font-size: 0.95rem;
-}
-
-/* =========================
-   WRAPPER
-========================= */
 main {
     flex: 1;
-    padding: 20px;
     background: #f7f5ff;
 }
 
@@ -42,138 +21,178 @@ main {
    NAVBAR
 ========================= */
 .navbar-purple {
-    background-color: purple;
+    background: purple;
     width: 100%;
-    z-index: 1000;
+    padding: .8rem 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
 }
 
-.navbar-purple .nav-link {
-    font-size: 1.05rem;
+.navbar-brand{
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: .2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.navbar-brand {
-    font-size: 1.3rem;
-    font-weight: 400;
+.nav-link{
+    font-size: .95rem;
+    font-weight: 500;
+    transition: .2s ease;
 }
 
-.logo-principal {
-    height: 75px;
+.nav-link:hover{
+    color: #e5c6ff !important;
+}
+
+.logo-navbar{
+    height: 55px;
     width: auto;
 }
 
-.navbar-brand span {
-    font-size: 1.2rem;
-    font-weight: 300;
+.logo-principal{
+    height: 40px;
+    width: auto;
 }
 
 /* =========================
-   CARRUSEL PRINCIPAL
+   BUSCADOR NAVBAR
 ========================= */
-#carouselExampleCaptions {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-bottom: 50px;
-}
 
-.carousel-item {
-    height: 480px;
+.navbar .input-group{
     overflow: hidden;
+    border-radius: 25px;
 }
 
-.carousel-item img {
+.navbar .input-group .form-control{
+    min-width: 260px;
+    border: none;
+    box-shadow: none;
+    padding: .55rem 1rem;
+    border-radius: 25px 0 0 25px;
+}
+
+.navbar .input-group .form-control:focus{
+    box-shadow: none;
+}
+
+.navbar .input-group .btn{
+    border: none;
+    border-radius: 0 25px 25px 0;
+    padding: .55rem 1rem;
+}
+
+/* Dropdown */
+
+.dropdown-menu{
+    border: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    border-radius: 12px;
+}
+
+.dropdown-item{
+    padding: .6rem 1rem;
+}
+
+.dropdown-item:hover{
+    background-color: #f7f0ff;
+}
+
+/* Responsive */
+
+@media (max-width: 991px){
+
+    .navbar .input-group .form-control{
+        min-width: 100%;
+    }
+
+    .navbar form{
+        margin: 1rem 0;
+    }
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer-teatro{
+    background:#1a1a1a;
+    color:#fff;
+    padding:12px 0;
+    margin-top:25px;
+}
+
+.footer-logo{
+    height:60px;
+    width:auto;
+}
+
+.footer-teatro h5{
+    font-size:1rem;
+    font-weight:600;
+    color:#c58cff;
+}
+
+.footer-teatro p,
+.footer-teatro a,
+.footer-teatro li{
+    font-size:.9rem;
+    margin-bottom:4px;
+}
+
+.footer-teatro a{
+    color:#fff;
+    transition:.2s;
+}
+
+.footer-teatro a:hover{
+    color:#c58cff !important;
+}
+
+.footer-teatro hr{
+    opacity:.2;
+    margin:12px 0;
+}
+
+.footer-teatro .small{
+    font-size:.8rem;
+}
+/* =========================
+   BOLETERÍA 
+========================= */
+/* TEXTO JUSTIFICADO REAL */
+.boleteria-text {
+    text-align: justify;
+    line-height: 1.7;
+}
+
+/* TITULOS CENTRADOS BIEN */
+.boleteria-card .card-header h5 {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    transition: transform 0.4s ease, filter 0.4s ease;
+    text-align: center;
 }
 
-.carousel-item img:hover {
-    transform: scale(1.04);
-    filter: brightness(0.95);
+/* MÁS AIRE ENTRE TEXTO Y BOTÓN (si usás botones en otros cards) */
+.boleteria-card .card-body {
+    padding-bottom: 25px;
 }
 
-/* responsive */
-@media (max-width: 768px) {
-    .carousel-item { height: 300px; }
+/* ALERTA MÁS LIMPIA */
+.boleteria-alert {
+    border-radius: 12px;
+    font-weight: 500;
 }
-
-@media (max-width: 480px) {
-    .carousel-item { height: 180px; }
-}
-
-/* =========================
-   FLECHAS CARRUSEL
-========================= */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 6%;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none !important;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background: rgba(128, 0, 128, 0.75) !important;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background-image: none !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-control-prev-icon::after,
-.carousel-control-next-icon::after {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid white;
-    border-right: 2px solid white;
-}
-
-.carousel-control-prev-icon::after { transform: rotate(-135deg); }
-.carousel-control-next-icon::after { transform: rotate(45deg); }
-
-.carousel-control-prev:hover .carousel-control-prev-icon,
-.carousel-control-next:hover .carousel-control-next-icon {
-    background: rgba(115, 51, 165, 0.85) !important;
-    transform: scale(1.12);
-    box-shadow: 0 0 15px rgba(138, 62, 196, 0.6);
-}
-
-/* =========================
-   EVENTOS
-========================= */
-.eventos-section {
-    background: linear-gradient(to bottom, #f7f5ff, #ffffff);
-    padding: 50px 0 30px 0;
-}
-
-#eventosCarousel .carousel-item {
-    overflow: visible;
-    padding: 10px 0;
-}
-
 /* =========================
    TÍTULOS
 ========================= */
-
 .titulo-eventos,
 .titulo-boleteria {
-    position: relative;
     text-align: center;
     font-weight: 600;
-    letter-spacing: 1px;
     color: #2c2c2c;
-}
-
-.titulo-eventos::before,
-.titulo-boleteria::before {
-    display: none !important;
-    content: none !important;
+    font-style: italic;
+    position: relative;
 }
 
 .titulo-eventos::after,
@@ -184,36 +203,166 @@ main {
     height: 4px;
     margin: 10px auto 0;
     border-radius: 10px;
-    background: linear-gradient(90deg, transparent, #a000c8, transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #a000c8,
+        transparent
+    );
     background-size: 200% auto;
     animation: glowMove 6s linear infinite;
 }
 
+@keyframes glowMove {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
 /* =========================
-   EVENTO CARD
+   CARDS
 ========================= */
-.evento-card {
-    border-radius: 14px;
-    background: #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    transition: 0.25s;
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.login-card {
+    border-radius: 18px;
     overflow: hidden;
 }
 
-.evento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+/* =========================
+   EVENTOS
+========================= */
+.evento-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all .3s ease;
+    border: none;
 }
 
-.evento-card .card-header {
-    background: #6f42c1;
-    color: #fff;
-    text-align: center;
+.evento-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.evento-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 .evento-card .card-body {
-    padding: 16px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.precio-evento {
+    color: #6f42c1;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* =========================
+   CARRUSEL
+========================= */
+
+.carousel {
+    position: relative;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-item {
+    display: none;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.btn-login:hover {
+    background: #5a34a3;
+    color: white;
+}
+
+/* FLECHAS */
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8%;
+    z-index: 1000;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(111, 66, 193, 0.9);
+    border-radius: 50%;
+    background-size: 55%;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+/* =========================
+   INDICADORES
+========================= */
+
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.carousel-indicators .active {
+    background-color: #c58cff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px){
+    .carousel-img{
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px){
+    .carousel-img{
+        height: 280px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next{
+        width: 12%;
+    }
+}
+
+@media (max-width: 576px){
+    .carousel-img{
+        height: 220px;
+    }
 }
 
 /* =========================
@@ -222,10 +371,8 @@ main {
 .btn-purple {
     background: purple;
     color: white;
-    border: none;
-    padding: 7px 16px;
-    border-radius: 6px;
-    margin-top: auto;
+    border-radius: 8px;
+    padding: 8px 16px;
 }
 
 .btn-purple:hover {
@@ -233,267 +380,173 @@ main {
     color: white;
 }
 
-/* =========================
-   BOLETERÍA
-========================= */
-
-.boleteria-subtitulo {
-    color: #222;
+.btn-login {
+    background: #6f42c1;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
     font-weight: 500;
+    transition: .2s;
 }
 
-.boleteria-card .card-header {
-    background-color: purple !important;
-    color: white !important;
-    text-align: center;
-}
-
-.boleteria-card .card-header h4 {
-    margin: 0;
-    font-weight: 600;
-}
-
-.boleteria-card .card-body {
-    text-align: center;
-    color: #333;
-}
-
-.boleteria-card ul li {
-    text-align: left;
-}
-
-.boleteria-card {
-    border-radius: 16px;
-    transition: 0.3s;
-}
-
-.boleteria-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(128, 0, 128, 0.2);
+.btn-login:hover {
+    background: #5a34a3;
+    color: white;
 }
 
 /* =========================
-   TALLERES
+   LOGIN / REGISTRO
 ========================= */
-.titulo-eventos {
-    margin-top: 30px;
+.login-section {
+    background: #f6f6fb;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
 }
 
-.talleres-section {
-    padding-top: 30px;
-}
-
-
-.talleres-subtitulo {
-    color: #222;
-    font-weight: 500;
-}
-
-.taller-card {
-    border-radius: 16px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition: 0.3s;
-}
-
-.taller-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(128,0,128,0.2);
-}
-
-.taller-img {
-    height: 200px;
-    object-fit: cover;
-}
-
-.taller-card .card-body {
-    padding: 14px;
-}
-
-.taller-info {
-    color: purple;
+.titulo-login {
     font-weight: 600;
+    color: #3b2a66;
 }
 
-/* =========================
-   PAGINACIÓN
-========================= */
-.pagination .page-link {
-    color: white;
-    background: rgba(128, 0, 128, 0.75);
-    border: none;
-    margin: 0 4px;
-    border-radius: 8px;
-    transition: all 0.25s ease;
+.subtitulo-login {
+    color: #6c6c6c;
+    font-size: .95rem;
+    margin-top: 5px;
 }
 
-.pagination .page-link:hover {
-    background: rgba(115, 51, 165, 0.9);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(138, 62, 196, 0.6);
+.input-login {
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.pagination .page-item.active .page-link {
-    background: purple;
-    color: white;
-    box-shadow: 0 0 12px rgba(128, 0, 128, 0.7);
+.link-login {
+    color: #51308d;
+    text-decoration: none;
 }
 
-.pagination .page-item.disabled .page-link {
-    opacity: 0.5;
+.link-login:hover {
+    text-decoration: underline;
 }
 
 /* =========================
    CONTACTO
 ========================= */
-
-.contacto-subtitulo {
-    color: #222;
-    font-weight: 500;
-}
-
-/* ===== CARD CONTACTO ===== */
-/* SECCIÓN CONTACTO */
 .contacto-section {
     padding-top: 20px;
 }
 
 .contacto-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
-    border-radius: 12px;
-    background-color: #f7f4fb;
+    background: #f7f4fb;
 }
 
-/* FORMULARIO */
-.contacto-card .card-body {
-    padding: 30px;
+.contacto-info p {
+    margin-bottom: 12px;
+    font-size: 1.05rem;
 }
 
-.contacto-card form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* =========================
+   QUIÉNES SOMOS Y BOLETERÍA
+========================= */
+.card-soft {
+    border: none;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: .3s ease;
 }
 
-/* ====== MOBILE ====== */
-@media (max-width: 576px) {
-    .card {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-    }
+.card-soft:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
 }
 
-/* INPUTS */
-.form-control {
-    padding: 10px 12px;
-    font-size: 15px;
-    border-radius: 8px;
+.card-soft-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    color: #333;
 }
 
-
-/* ============================= */
-/* EVENTOS CARDS
-/* ============================= */
-
-.evento-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 10px; /* opcional pero mejora estética */
+.card-soft-body {
+    padding: 15px 20px;
+    color: #555;
+    line-height: 1.7;
 }
 
-/* IMAGEN RESPONSIVE */
-.evento-img {
-    width: 100%;
-    height: 220px;
+.equipo-img {
+    width: 140px;
+    height: 140px;
     object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #f0e9ff;
+    transition: .3s;
 }
 
-/* BODY FLEXIBLE */
-.evento-card .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
+.equipo-img:hover {
+    transform: scale(1.05);
 }
 
-/* INFO CARD (CONTACTO) */
-.contacto-card-info .card-body {
-    display: block;
-    text-align: left;
+.card-seccion h4 {
+    color: #6f42c1;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
-
-/* ===== MOBILE ===== */
-@media (max-width: 576px) {
-
-    .evento-card {
-        width: 100%;
-    }
-
-    .evento-img {
-        height: 160px;
-    }
-
-    .evento-card .card-body {
-        padding: 12px;
-    }
+.metrica-numero {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6f42c1;
 }
 
-/* ===== TABLET ===== */
-@media (min-width: 577px) and (max-width: 768px) {
-
-    .evento-img {
-        height: 190px;
-    }
-
-    .evento-card .card-body {
-        padding: 14px;
-    }
+.metrica-texto {
+    color: #666;
 }
 
-/* ===== DESKTOP ===== */
-@media (min-width: 769px) {
 
-    .evento-img {
-        height: 220px;
-    }
-
-    .evento-card .card-body {
-        padding: 15px;
-    }
+/* =========================
+   TÉRMINOS Y USOS
+========================= */
+.contacto-texto p {
+    text-align: justify;
+    line-height: 1.7;
 }
 
-/* BODY FLEXIBLE (NO ALTURA FIJA) */
-.evento-card .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
+.text-justify {
+    text-align: justify;
 }
 
-/* INFO CARD */
-.contacto-card-info .card-body {
-    display: block;
-    text-align: left;
+.contacto-card .card-header {
+    background: #f7f4fb;
+    font-weight: 600;
 }
 
-/* COLORES */
+/* =========================
+   PAGINACIÓN
+========================= */
+.pagination {
+    justify-content: center;
+}
+
+.pagination .page-link {
+    color: white;
+    background: purple;
+    border: none;
+    margin: 0 3px;
+    border-radius: 6px;
+}
+
+.pagination .page-item.active .page-link {
+    background: #5a0080;
+}
+
+/* =========================
+   UTILIDADES
+========================= */
 .bg-purple {
     background-color: purple !important;
     color: white !important;
@@ -503,63 +556,146 @@ main {
     color: purple !important;
 }
 
-/* BOLETERÍA */
-.boleteria-card .card-body {
-    padding: 30px;
+.label-admin {
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* =========================
+   TALLERES
+========================= */
+
+.talleres-section {
+    min-height: 70vh;
+}
+
+.taller-card {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all .3s ease;
+    background: #fff;
+}
+
+.taller-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,.12);
+}
+
+.taller-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.taller-card .card-body {
+    padding: 1.5rem;
+}
+
+.taller-card h5 {
+    color: #4b0082;
+    min-height: 55px;
+}
+
+.taller-desc {
+    color: #555;
+    line-height: 1.6;
     text-align: center;
+    flex-grow: 1;
 }
 
-/* RESPONSIVE EXTRA */
+.taller-card .badge {
+    font-size: .85rem;
+    font-weight: 500;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+.taller-card .btn-purple {
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.taller-card .btn-purple:hover {
+    transform: scale(1.02);
+}
+
 @media (max-width: 768px) {
-    .evento-img {
-        height: 180px;
+
+    .taller-img {
+        height: 220px;
     }
 
-    .contacto-card .card-body {
-        padding: 20px;
+    .taller-card h5 {
+        min-height: auto;
+    }
+
+}
+
+/* TITULO CARD */
+.taller-card h5 {
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 8px;
+}
+
+/* DESCRIPCIÓN */
+.taller-desc {
+    color: #666;
+    font-size: .95rem;
+    min-height: 45px;
+}
+
+/* INFO HORARIOS */
+.taller-info {
+    color: #6f42c1;
+    font-size: .9rem;
+    margin-bottom: 15px;
+}
+
+/* BOTÓN */
+.btn-purple {
+    background: #6f42c1;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+    transition: .2s;
+    border: none;
+}
+
+.btn-purple:hover {
+    background: #5a34a3;
+    color: white;
+}
+
+/* SUBTÍTULO */
+.talleres-section p {
+    margin-bottom: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .taller-img {
+        height: 200px;
     }
 }
 
-.carousel-img {
-        height: 400px;
-        object-fit: cover;
-    }
-    .evento-img {
-        width: 100%;
+@media (max-width: 576px) {
+    .taller-img {
         height: 180px;
-        object-fit: cover;
-        border-radius: 8px 8px 0 0;
     }
-    .btn-purple {
-        background-color: purple;
-        color: white;
-        border-radius: 25px;
-        transition: all 0.3s;
-    }
-    .btn-purple:hover {
-        background-color: darkmagenta;
-        transform: scale(1.02);
-    }
-    .text-purple {
-        color: purple;
-    }
-    .card {
-        border-radius: 12px;
-        overflow: hidden;
-        transition: transform 0.3s;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
+}
 
+.taller-desc,
+.taller-info {
+    text-align: justify;
+}
 
-    .carousel-img {
-        height: 400px;
-        object-fit: cover;
-    }
-
-
-    
-    .bg-purple { background-color: purple; }
-
+.estado-badge{
+    font-size: .95rem;
+    padding: .55rem .9rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
 

@@ -4,11 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Consulta;
 
 class Consulta extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'email', 'telefono', 'mensaje', 'tipo_consulta','leido'];
+    protected $fillable = [
+        'nombre',
+        'email',
+        'telefono',
+        'tipo_consulta',
+        'mensaje',
+        'leido'
+    ];
+
+    // Valor por defecto para nuevas consultas
+    protected $attributes = [
+        'leido' => false,
+    ];
 }

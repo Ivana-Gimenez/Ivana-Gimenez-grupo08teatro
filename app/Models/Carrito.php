@@ -11,15 +11,35 @@ class Carrito extends Model
 
     protected $table = 'carrito';
 
-    protected $fillable = ['user_id', 'evento_id', 'cantidad'];
+    protected $fillable = [
+        'user_id',
+        'session_id',
+        'taller_id',
+        'cantidad',
+        'expires_at',
+    ];
 
+    // =========================
+    // USUARIO
+    // =========================
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function evento()
+    // =========================
+    // TALLER
+    // =========================
+    public function taller()
     {
-        return $this->belongsTo(Evento::class);
+        return $this->belongsTo(Taller::class);
+    }
+
+    // =========================
+    // VER SI EXPIRÓ
+    // =========================
+    public function expiro()
+    {
+        return $this->expires_at && now()->greaterThan($this->expires_at);
     }
 }

@@ -12,6 +12,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'apellido',
         'email',
         'password',
         'rol_id',
@@ -25,5 +26,18 @@ class User extends Authenticatable
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'rol_id');
+    }
+
+    public function talleres()
+    {
+        return $this->belongsToMany(
+            \App\Models\Taller::class,
+            'inscripciones'
+        )->withTimestamps();
+    }
+
+    public function inscripciones()
+    {
+        return $this->hasMany(Inscripcion::class);
     }
 }

@@ -2,214 +2,137 @@
 
 @section('content')
 
+<section class="eventos-section py-5">
 
-<div class="container talleres-section">
+    <div class="container">
 
-    <!-- TÍTULO -->
-    <div class="row">
-        <div class="col-12 text-center mb-5">
-            <h1 class="titulo-eventos">🎨 Talleres</h1>
-            <p class="talleres-subtitulo">Conocé nuestros talleres artísticos</p>
-        </div>
-    </div>
+        <h2 class="text-center titulo-eventos mb-5">
+            🎨 Talleres Artísticos
+        </h2>
 
-    <!-- CONTENEDOR PAGINADO -->
-    <div id="talleresContainer" class="row g-4">
+        @if($talleres->count() > 0)
 
-        <!-- CARD 1 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/4.jpeg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Taller de Títeres</h5>
-                    <p class="taller-desc">Construcción y manipulación de títeres.</p>
-                    <p class="taller-info"><strong>Inicio: 6 de junio · Lunes 14:30 a 16:30</strong></p>
+            <div class="row g-4">
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
+                @foreach($talleres as $taller)
+
+                    <div class="col-md-4">
+
+                        <div class="card evento-card h-100 shadow-sm border-0">
+
+                            <img src="{{ asset('img/talleres/' . $taller->imagen) }}"
+                                 class="evento-img"
+                                 alt="{{ $taller->nombre }}">
+
+                            <div class="card-body text-center d-flex flex-column">
+
+                                <h5 class="fw-bold">{{ $taller->nombre }}</h5>
+
+                                <p class="text-muted mb-1">
+                                    {{ $taller->descripcion }}
+                                </p>
+
+                                <p class="text-muted small mb-2">
+                                    📅 {{ $taller->dias_horarios }}
+                                </p>
+
+                                <p class="text-success fw-semibold mb-2">
+                                    💰 ${{ number_format($taller->precio, 0, ',', '.') }}
+                                </p>
+
+                                <p class="text-muted small mb-3">
+                                    🎟️ Cupos: {{ $taller->cupos_disponibles }}
+                                </p>
+
+                                {{-- =========================
+                                    BOTÓN SEGÚN ROL
+                                ========================== --}}
+                                @auth
+
+                                    {{-- CLIENTE --}}
+                                    @if(Auth::user()->rol_id == 2)
+
+                                        <form action="{{ route('carrito.agregar', $taller->id) }}"
+                                              method="POST"
+                                              class="mt-auto">
+
+                                            @csrf
+
+                                            <button class="btn btn-purple w-100">
+                                                Inscribirme
+                                            </button>
+
+                                        </form>
+
+                                    @endif
+
+                                @else
+
+                                    {{-- INVITADO --}}
+                                    <a href="{{ route('login') }}"
+                                       class="btn btn-purple w-100 mt-auto">
+                                        Iniciar sesión
+                                    </a>
+
+                                @endauth
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                @endforeach
+
             </div>
-        </div>
 
-        <!-- CARD 2 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/8.jpeg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Taller de Ballet</h5>
-                    <p class="taller-desc">Nivel intermedio y avanzado.</p>
-                    <p class="taller-info"><strong>Martes y jueves · 15 a 17 hs</strong></p>
+        @else
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
+            <div class="text-center text-muted py-5">
+                <h4>🔍 No hay talleres disponibles</h4>
             </div>
-        </div>
 
-        <!-- CARD 3 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/9.jpeg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Mini Audiovisuales</h5>
-                    <p class="taller-desc">Producción y edición visual.</p>
-                    <p class="taller-info"><strong>Lunes · 17 a 18:30 hs</strong></p>
+        @endif
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
+        {{-- =========================
+            BOTÓN VER MÁS SEGÚN ROL
+        ========================== --}}
+        <div class="text-center mt-5">
 
-        <!-- CARD 4 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/5.jpeg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Danza Contemporánea</h5>
-                    <p class="taller-desc">Expresión corporal.</p>
-                    <p class="taller-info"><strong>Martes y jueves · 10 a 12 hs</strong></p>
+            @auth
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
+                {{-- ADMIN --}}
+                @if(Auth::user()->rol_id == 1)
 
-        <!-- CARD 5 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/6.jpeg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Danza Clásica</h5>
-                    <p class="taller-desc">Técnica y elegancia.</p>
-                    <p class="taller-info"><strong>Viernes · 14 a 18 hs</strong></p>
-
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- CARD 6 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller6.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Taller de Aromito</h5>
-                    <p class="taller-desc">Espacio creativo.</p>
-                    <p class="taller-info"><strong>Martes y jueves · 21:30 a 23 hs</strong></p>
-
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
+                    <a href="{{ route('admin.talleres.index') }}"
+                       class="btn btn-primary px-4">
+                        Ver gestión de talleres
                     </a>
-                </div>
-            </div>
-        </div>
 
-        <!-- CARD 7 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller7.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Actuación Teatral</h5>
-                    <p class="taller-desc">Improvisación y personajes.</p>
-                    <p class="taller-info"><strong>Lunes · 18 a 20 hs</strong></p>
+                {{-- CLIENTE --}}
+                @elseif(Auth::user()->rol_id == 2)
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
+                    <a href="{{ route('talleres.index') }}"
+                       class="btn btn-primary px-4">
+                        Ver más talleres
+                    </a>
 
-        <!-- CARD 8 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller8.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Expresión Corporal</h5>
-                    <p class="taller-desc">Movimiento libre y creatividad.</p>
-                    <p class="taller-info"><strong>Miércoles · 10 a 12 hs</strong></p>
+                @endif
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
+            @else
 
-        <!-- CARD 9 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller9.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Producción Audiovisual</h5>
-                    <p class="taller-desc">Guión, grabación y edición.</p>
-                    <p class="taller-info"><strong>Viernes · 18 a 20 hs</strong></p>
+                {{-- INVITADO --}}
+                <a href="{{ route('login') }}"
+                   class="btn btn-primary px-4">
+                    Ver más talleres
+                </a>
 
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
+            @endauth
 
-        <!-- CARD 10 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller10.jpg" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Teatro Infantil</h5>
-                    <p class="taller-desc">Juegos teatrales para niños.</p>
-                    <p class="taller-info"><strong>Sábados · 11 a 13 hs</strong></p>
-
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- CARD 11 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller11.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Entrenamiento Escénico</h5>
-                    <p class="taller-desc">Voz, cuerpo y presencia.</p>
-                    <p class="taller-info"><strong>Jueves · 9 a 10 hs</strong></p>
-
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- CARD 12 -->
-        <div class="col-md-4 taller-item">
-            <div class="card taller-card h-100">
-                <img src="/img/talleres/taller12.jfif" class="taller-img">
-                <div class="card-body d-flex flex-column">
-                    <h5>Laboratorio Creativo</h5>
-                    <p class="taller-desc">Exploración interdisciplinaria.</p>
-                    <p class="taller-info"><strong>Domingos · 16 a 18 hs</strong></p>
-
-                    <a href="#" onclick="mostrarContacto(); return false;" class="btn btn-purple w-100 mt-auto">Inscribirse</a>
-                </div>
-            </div>
         </div>
 
     </div>
 
-    <!-- PAGINACIÓN -->
-    <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" id="prev">Anterior</a>
-            </li>
-
-            <li class="page-item active">
-                <span class="page-link" id="pageNumber">1</span>
-            </li>
-
-            <li class="page-item">
-                <a class="page-link" href="#" id="next">Siguiente</a>
-            </li>
-        </ul>
-    </nav>
-
-</div>
-
-<script>
-    function mostrarContacto() {
-        alert("📞 Para inscribirte en los talleres, comunicate al:\n\n3794261496\n\n📧 info@teatrodelaciudad.com\n\n¡Te esperamos!");
-    }
-</script>
+</section>
 
 @endsection

@@ -10,13 +10,22 @@ class Rol extends Model
 {
     use HasFactory, SoftDeletes;
 
+    // =========================
+    // TABLA
+    // =========================
     protected $table = 'roles';
 
+    // =========================
+    // CAMPOS EDITABLES
+    // =========================
     protected $fillable = [
         'nombre',
         'descripcion',
     ];
 
+    // =========================
+    // Un rol puede tener muchos usuarios
+    // =========================
     public function users()
     {
         return $this->hasMany(User::class, 'rol_id');

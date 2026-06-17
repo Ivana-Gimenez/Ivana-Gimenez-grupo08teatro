@@ -22,8 +22,16 @@ class ConsultaController extends Controller
             'mensaje' => 'required|string|min:10',
         ]);
 
-        Consulta::create($request->all());
+        Consulta::create([
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'tipo_consulta' => $request->tipo_consulta,
+            'mensaje' => $request->mensaje,
+        ]);
 
-        return redirect()->route('consultas.form')->with('success', '¡Mensaje enviado con éxito! Te responderemos a la brevedad.');
+        return redirect()
+            ->route('consultas.form')
+            ->with('success', '¡Mensaje enviado con éxito! Te responderemos a la brevedad.');
     }
 }

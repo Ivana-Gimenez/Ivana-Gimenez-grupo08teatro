@@ -2,127 +2,181 @@
 
 @section('content')
 
-<div class="container contacto-section">
+<div class="container py-5 contacto-section">
 
     <!-- TÍTULO -->
-    <div class="row">
-        <div class="col-12 text-center mb-5">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
             <h1 class="titulo-eventos">📞 Contacto</h1>
-            <p class="contacto-subtitulo">Comunicate con nosotros</p>
+
+            <p class="subtitulo-login text-muted fs-5">
+                Comunicate con el Teatro de la Ciudad
+            </p>
         </div>
     </div>
 
+    <!-- MENSAJE DE ÉXITO -->
+    <div class="row justify-content-center mb-3">
+        <div class="col-lg-9">
+
+            @if(session('success'))
+                <div class="alert alert-success text-center">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-9">
+            <div class="card login-card shadow-sm border-0">
+                <div class="card-body">
+                    <p class="texto-justificado mb-0">
+                        Podés enviarnos tu consulta a través del formulario o comunicarte directamente con nosotros.
+                        Respondemos en el menor tiempo posible.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO -->
     <div class="row g-4">
 
         <!-- FORMULARIO -->
         <div class="col-md-7">
-            <div class="card contacto-card">
 
-                <div class="card-header bg-purple text-white text-center">
-                    <h4 class="mb-0">✉️ Enviar mensaje</h4>
-                </div>
+            <div class="card login-card shadow-sm border-0">
 
-                <div class="card-body p-4">
-                    <form action="/contacto" method="POST">
-                       @csrf
-                       
+                <div class="card-body">
 
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Nombre</label>
-                            <input type="text" class="form-control" placeholder="Tu nombre">
+                    <h4 class="text-center text-purple fw-bold mb-4">
+                        ✉️ Enviar mensaje
+                    </h4>
+
+                    <form action="{{ route('contacto.enviar') }}" method="POST">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fst-italic">Nombre:</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
                         </div>
 
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Apellido</label>
-                            <input type="text" class="form-control" placeholder="Tu apellido">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fst-italic">Apellido:</label>
+                            <input type="text" name="apellido" class="form-control" placeholder="Tu apellido">
                         </div>
 
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Correo electrónico</label>
-                            <input type="email" class="form-control" placeholder="tu@email.com">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fst-italic">Correo electrónico:</label>
+                            <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
                         </div>
 
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Teléfono</label>
-                            <input type="tel" class="form-control" placeholder="Ej: 379 123 4567">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fst-italic">Teléfono:</label>
+                            <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
                         </div>
 
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Mensaje</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold fst-italic">Mensaje:</label>
                             <textarea name="mensaje" class="form-control" rows="5" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-purple w-100">
+                        <button type="submit" class="btn btn-login w-100">
                             Enviar mensaje
                         </button>
-                  </form>
-                    
+
+                    </form>
+
                 </div>
+
             </div>
+
         </div>
 
-        <!-- INFORMACIÓN -->
+        <!-- INFO -->
         <div class="col-md-5">
-            <div class="card contacto-card">
 
-                <div class="card-header bg-purple text-white text-center">
-                    <h4 class="mb-0">📍 Información</h4>
-                </div>
+            <div class="card login-card shadow-sm border-0">
 
                 <div class="card-body">
-                    <p class="fw-bold">Teatro de la Ciudad</p>
 
-                    <p><strong>📌 Dirección:</strong> Pasaje Villanueva 1470</p>
-                    <p><strong>📞 Teléfono:</strong> 379-4699617</p>
-                    <p><strong>✉️ Email:</strong>teatrodelaciudad788@gmail.com</p>
+                    <h4 class="text-center text-purple fw-bold mb-4">
+                        📍 Información
+                    </h4>
+
+                    <p class="texto-justificado mb-2">
+                        <strong>Teatro de la Ciudad</strong>
+                    </p>
+
+                    <p class="texto-justificado mb-2">
+                        📌 Pasaje Villanueva 1470
+                    </p>
+
+                    <p class="texto-justificado mb-2">
+                        📞 379-4699617
+                    </p>
+
+                    <p class="texto-justificado mb-4">
+                        ✉️ teatrodelaciudad788@gmail.com
+                    </p>
 
                     <hr>
 
-                    <p class="fw-bold">Redes sociales</p>
+                    <p class="text-center fw-bold mb-3">
+                        Redes sociales
+                    </p>
 
-                    <div class="d-flex gap-2 justify-content-center flex-wrap">
-                        <a href="https://facebook.com" target="_blank" class="btn btn-outline-primary btn-sm">
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+
+                        <a href="https://facebook.com"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
                             Facebook
                         </a>
 
-                        <a href="https://www.instagram.com/teatrodelaciudadctes" target="_blank" class="btn btn-outline-danger btn-sm">
+                        <a href="https://www.instagram.com/teatrodelaciudadctes"
+                           target="_blank"
+                           class="btn btn-outline-danger btn-sm">
                             Instagram
                         </a>
+
                     </div>
+
                 </div>
 
             </div>
+
         </div>
 
     </div>
 
-<div class="container contacto-section">
-
     <!-- UBICACIÓN -->
-    <div class="row mt-4">
+    <div class="row mt-5">
+
         <div class="col-12">
 
-            <div class="card shadow boleteria-card">
-
-                <div class="card-header bg-purple text-white text-center">
-                    <h5 class="mb-0">🗺️ Cómo llegar</h5>
-                </div>
+            <div class="card login-card shadow-sm border-0">
 
                 <div class="card-body text-center">
 
-                    <p class="mb-3">
-                        📍 <strong>Pasaje Villanueva 1470, Corrientes Capital</strong>
+                    <h4 class="text-purple fw-bold mb-4">
+                        🗺️ Cómo llegar
+                    </h4>
+
+                    <p class="texto-justificado mb-3">
+                        📍 Pasaje Villanueva 1470, Corrientes Capital
                     </p>
 
-                    <p class="mb-4">
-                        Estamos en el centro de la ciudad, entre Catamarca y San Lorenzo
+                    <p class="texto-justificado mb-4">
+                        Estamos en el centro de la ciudad, entre Catamarca y San Lorenzo.
                     </p>
 
-                    <a 
-                        href="https://www.google.com/maps/search/?api=1&query=Pasaje+Villanueva+1470+Corrientes"
-                        target="_blank"
-                        class="btn btn-purple"
-                    >
+                    <a href="https://www.google.com/maps/search/?api=1&query=Pasaje+Villanueva+1470+Corrientes"
+                       target="_blank"
+                       class="btn btn-login">
                         Ver en Google Maps
                     </a>
 
@@ -131,6 +185,7 @@
             </div>
 
         </div>
+
     </div>
 
 </div>

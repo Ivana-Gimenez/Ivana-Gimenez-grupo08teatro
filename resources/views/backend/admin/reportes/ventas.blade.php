@@ -1,82 +1,187 @@
 @extends('plantilla')
 
 @section('content')
-<div class="container mt-4">
-    <h2 class="text-center mb-4">📊 Reporte de Ventas</h2>
 
-    <!-- Tarjetas de resumen -->
-    <div class="row mb-4">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary">
-                <div class="card-body">
-                    <h5 class="card-title">Total Entradas Vendidas</h5>
-                    <h2>{{ $totalEntradas }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success">
-                <div class="card-body">
-                    <h5 class="card-title">Total Recaudado</h5>
-                    <h2>${{ number_format($totalRecaudado, 0, ',', '.') }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-warning">
-                <div class="card-body">
-                    <h5 class="card-title">Total Comisiones</h5>
-                    <h2>${{ number_format($totalComisiones, 0, ',', '.') }}</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-danger">
-                <div class="card-body">
-                    <h5 class="card-title">Ganancia Neta</h5>
-                    <h2>${{ number_format($gananciaNeta, 0, ',', '.') }}</h2>
-                </div>
-            </div>
-        </div>
+<div class="container py-4">
+
+    <a href="/admin" class="btn btn-outline-secondary mb-4">
+        ← Volver
+    </a>
+
+    <div class="text-center mt-4 mb-5">
+
+        <h2 class="titulo-eventos mb-1">
+            📊 Reporte de Ventas
+        </h2>
+
+        <p class="contacto-subtitulo mb-0">
+            Resumen general de ventas e ingresos
+        </p>
+
     </div>
 
-    <!-- Tabla detalle por evento -->
-    <div class="card">
-        <div class="card-header bg-purple text-white">
-            <h4>📋 Detalle por Evento</h4>
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted mb-2">
+                        🎟 Entradas Vendidas
+                    </h6>
+
+                    <h2 class="fw-bold mb-0">
+                        {{ $totalEntradas }}
+                    </h2>
+
+                </div>
+
+            </div>
+
         </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted mb-2">
+                        💰 Recaudación Total
+                    </h6>
+
+                    <h2 class="fw-bold text-success mb-0">
+                        ${{ number_format($totalRecaudado, 0, ',', '.') }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted mb-2">
+                        💳 Comisiones
+                    </h6>
+
+                    <h2 class="fw-bold text-warning mb-0">
+                        ${{ number_format($totalComisiones, 0, ',', '.') }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted mb-2">
+                        📈 Ganancia Neta
+                    </h6>
+
+                    <h2 class="fw-bold text-primary mb-0">
+                        ${{ number_format($gananciaNeta, 0, ',', '.') }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- TOTAL DE COMPRAS --}}
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-body text-center">
+
+            <h5 class="mb-2">
+                🛒 Compras Realizadas
+            </h5>
+
+            <h3 class="fw-bold">
+                {{ $totalCompras }}
+            </h3>
+
+        </div>
+
+    </div>
+
+    {{-- DETALLE POR EVENTO --}}
+    <div class="card shadow border-0">
+
         <div class="card-body">
+
+            <h5 class="text-center text-purple fw-bold mb-4"">
+                📋 Detalle por Evento
+            </h5>
+
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+
+                <table class="table table-hover align-middle">
+
                     <thead>
                         <tr>
                             <th>Evento</th>
-                            <th>Entradas Vendidas</th>
-                            <th>Total Recaudado</th>
+                            <th class="text-center">Entradas Vendidas</th>
+                            <th class="text-end">Recaudado</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        @foreach($resumenEventos as $item)
-                        <tr>
-                            <td>{{ $item->evento->nombre }}</td>
-                            <td>{{ $item->total_entradas }}</td>
-                            <td>${{ number_format($item->total_recaudado, 0, ',', '.') }}</td>
-                        </tr>
-                        @endforeach
+
+                        @forelse($resumenEventos as $item)
+
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    {{ $item->evento->nombre }}
+                                </td>
+
+                                <td class="text-center">
+                                    {{ $item->total_entradas }}
+                                </td>
+
+                                <td class="text-end text-success fw-bold">
+                                    ${{ number_format($item->total_recaudado, 0, ',', '.') }}
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+                                <td colspan="3" class="text-center text-muted py-4">
+                                    No hay ventas registradas.
+                                </td>
+                            </tr>
+
+                        @endforelse
+
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Total Compras realizadas:</th>
-                            <th colspan="2">{{ $totalCompras }} compras</th>
-                        </tr>
-                    </tfoot>
+
                 </table>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
-<style>
-    .bg-purple { background-color: purple; }
-</style>
 @endsection

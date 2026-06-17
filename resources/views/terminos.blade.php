@@ -1,110 +1,112 @@
 @extends('plantilla')
 
 @section('content')
-<div class="container contacto-section">
+
+<div class="container py-5 contacto-section">
 
     <!-- TÍTULO -->
-    <div class="row">
-        <div class="col-12 text-center mb-5">
+    <div class="row mb-5">
+        <div class="col-12 text-center">
             <h1 class="titulo-eventos">📜 Términos y Usos</h1>
-            <p class="contacto-subtitulo">
+
+            <p class="subtitulo-login text-muted fs-5">
                 Condiciones generales del Teatro de la Ciudad de Corrientes
             </p>
         </div>
     </div>
 
+    <!-- INTRO -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-9">
+            <div class="card login-card shadow-sm border-0">
+                <div class="card-body">
+                    <p class="texto-justificado mb-0">
+                        Estas condiciones regulan el uso del sitio web y los servicios del Teatro de la Ciudad.
+                        Al acceder, el usuario acepta los términos aquí descriptos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO -->
     <div class="row g-4">
 
-        <!-- 1 -->
+        @php
+        $terminos = [
+            [
+                "titulo" => "📌 Aceptación de los términos",
+                "textos" => [
+                    "Al acceder al sitio, el usuario acepta los presentes términos y condiciones.",
+                    "El uso continuo implica la aceptación de futuras modificaciones."
+                ]
+            ],
+            [
+                "titulo" => "🔐 Privacidad",
+                "textos" => [
+                    "La información personal será tratada de forma confidencial.",
+                    "No se comparte con terceros salvo obligación legal."
+                ]
+            ],
+            [
+                "titulo" => "🎟️ Compra de entradas",
+                "textos" => [
+                    "Las entradas son personales e intransferibles.",
+                    "Es responsabilidad del usuario verificar los datos antes de confirmar la compra."
+                ]
+            ],
+            [
+                "titulo" => "🔄 Devoluciones y cambios",
+                "textos" => [
+                    "No se realizan devoluciones salvo cancelación del evento.",
+                    "Los cambios están sujetos a disponibilidad y deben solicitarse con 48 hs de anticipación."
+                ],
+                "alerta" => "⚠ Sujeto a disponibilidad del evento."
+            ],
+            [
+                "titulo" => "⚙️ Modificaciones",
+                "textos" => [
+                    "El Teatro puede modificar estos términos en cualquier momento.",
+                    "Las actualizaciones entran en vigencia desde su publicación."
+                ]
+            ],
+        ];
+        @endphp
+
+        @foreach($terminos as $item)
+
         <div class="col-12">
-            <div class="card contacto-card">
-                <div class="card-header">
-                    <h4>1. Aceptación de los términos</h4>
+
+            <div class="card login-card shadow-sm border-0">
+
+                <div class="card-body">
+
+                    <h4 class="text-center text-purple fw-bold mb-4">
+                        {{ $item['titulo'] }}
+                    </h4>
+
+                    @foreach($item['textos'] as $texto)
+                        <p class="texto-justificado mb-3">
+                            {{ $texto }}
+                        </p>
+                    @endforeach
+
+                    @if(isset($item['alerta']))
+                        <div class="text-center text-muted mt-3">
+                            <strong>{{ $item['alerta'] }}</strong>
+                        </div>
+                    @endif
+
                 </div>
-                <div class="card-body contacto-texto">
-                    <p>
-                        Al acceder y utilizar el sitio del Teatro de la Ciudad de Corrientes, el usuario acepta los presentes términos y condiciones, que regulan el uso de la plataforma.
-                    </p>
-                    <p>
-                        En caso de no estar de acuerdo, se recomienda no utilizar el sitio. El uso continuo implica la aceptación de posibles modificaciones.
-                    </p>
-                </div>
+
             </div>
+
         </div>
 
-        <!-- 2 -->
-        <div class="col-12">
-            <div class="card contacto-card">
-                <div class="card-header">
-                    <h4>2. Privacidad</h4>
-                </div>
-                <div class="card-body contacto-texto">
-                    <p>
-                        La información personal de los usuarios será tratada con confidencialidad y conforme a la normativa vigente.
-                    </p>
-                    <p>
-                        No se compartirá con terceros sin consentimiento, salvo en casos donde exista una obligación legal.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3 -->
-        <div class="col-12">
-            <div class="card contacto-card">
-                <div class="card-header">
-                    <h4>3. Compra de entradas</h4>
-                </div>
-                <div class="card-body contacto-texto">
-                    <p>
-                        Las entradas adquiridas son personales e intransferibles. Es responsabilidad del usuario verificar correctamente los datos antes de confirmar la compra.
-                    </p>
-                    <p>
-                        Una vez finalizada la operación, no se garantizan cambios ni correcciones.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4 -->
-        <div class="col-12">
-            <div class="card contacto-card">
-                <div class="card-header">
-                    <h4>4. Devoluciones y cambios</h4>
-                </div>
-                <div class="card-body contacto-texto">
-                    <p>
-                        No se realizan devoluciones de dinero una vez confirmada la compra, excepto en caso de cancelación del evento.
-                    </p>
-                    <p>
-                        Los cambios de fecha podrán solicitarse con al menos 48 horas de anticipación y estarán sujetos a disponibilidad.
-                    </p>
-
-                    <div class="contacto-alerta">
-                        ⚠ Las solicitudes pueden ser rechazadas según disponibilidad del evento.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 5 -->
-        <div class="col-12">
-            <div class="card contacto-card">
-                <div class="card-header">
-                    <h4>5. Modificaciones</h4>
-                </div>
-                <div class="card-body contacto-texto">
-                    <p>
-                        El Teatro de la Ciudad de Corrientes se reserva el derecho de modificar estos términos en cualquier momento.
-                    </p>
-                    <p>
-                        Las actualizaciones entrarán en vigencia desde su publicación, por lo que se recomienda revisar periódicamente esta sección.
-                    </p>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 
 </div>
+
 @endsection
