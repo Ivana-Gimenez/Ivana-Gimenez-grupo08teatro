@@ -52,6 +52,7 @@
 
                 <div class="card-body">
 
+<<<<<<< HEAD
                     <h4 class="text-center text-purple fw-bold mb-4">
                         ✉️ Enviar mensaje
                     </h4>
@@ -77,6 +78,26 @@
                         <div class="mb-3">
                             <label class="form-label fw-bold fst-italic">Teléfono:</label>
                             <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
+=======
+                        <div class="mb-3 text-start">
+                            <label class="form-label fw-bold">Nombre</label>
+                             <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label fw-bold">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" placeholder="Tu apellido" required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label fw-bold">Correo electrónico</label>
+                            <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label fw-bold">Teléfono</label>
+                             <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
+>>>>>>> 90c245c27042119ffc11b9cbb7d2b6a50163a065
                         </div>
 
                         <div class="mb-3">

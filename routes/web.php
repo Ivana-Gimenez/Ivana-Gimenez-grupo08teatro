@@ -201,6 +201,14 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])
         ->name('carrito.finalizar');
 
+<<<<<<< HEAD
     Route::post('/compra/{id}/confirmar', [CompraController::class, 'confirmarPago'])
         ->name('compra.confirmar');
 });
+=======
+Route::get('/admin/reportes/ventas', [App\Http\Controllers\ReporteController::class, 'ventas'])->name('admin.reportes.ventas');
+
+Route::post('/contacto', [App\Http\Controllers\ContactoController::class, 'enviar'])->name('contacto.enviar');
+
+Route::get('/buscar', [EventoController::class, 'buscar'])->name('buscar');
+>>>>>>> 90c245c27042119ffc11b9cbb7d2b6a50163a065

@@ -10,6 +10,7 @@ class ContactoController extends Controller
 {
     public function enviar(Request $request)
     {
+        // Validar los datos
         $request->validate([
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -17,8 +18,16 @@ class ContactoController extends Controller
             'mensaje' => 'required|string|min:10',
         ]);
 
-        $data = $request->all();
+        // Datos del formulario
+        $data = [
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'email' => $request->email,
+            'telefono' => $request->telefono,
+            'mensaje' => $request->mensaje,
+        ];
 
+<<<<<<< HEAD
         // =========================
         // 1. GUARDAR EN BASE DE DATOS
         // =========================
@@ -38,6 +47,12 @@ class ContactoController extends Controller
             $message->to('ctesteatrodelaciudad@gmail.com')
                 ->subject('Nuevo mensaje de contacto')
                 ->replyTo($data['email'], $data['nombre']);
+=======
+        // Enviar email
+        Mail::send('emails.contacto', $data, function ($message) {
+            $message->to('teatrodelaciudad788@gmail.com')
+                    ->subject('Nuevo mensaje de contacto');
+>>>>>>> 90c245c27042119ffc11b9cbb7d2b6a50163a065
         });
 
         // =========================
