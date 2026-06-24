@@ -4,7 +4,7 @@
 
 <div class="container mt-5">
 
-    <h2 class="text-center mb-4">✏️ Editar Perfil</h2>
+    <h2 class="text-center mb-4">📩 Contáctanos</h2>
 
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -18,39 +18,30 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('cliente.perfil.update') }}">
+                    <form method="POST" action="{{ route('consultas.enviar') }}">
                         @csrf
 
-                        {{-- NOMBRE --}}
                         <div class="mb-3">
-                            <label>Nombre</label>
-                            <input type="text" name="name" class="form-control"
-                                   value="{{ $usuario->name }}" required>
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" required>
                         </div>
 
-                        {{-- APELLIDO --}}
                         <div class="mb-3">
-                            <label>Apellido</label>
-                            <input type="text" name="apellido" class="form-control"
-                                   value="{{ $usuario->apellido }}" required>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" required>
                         </div>
 
-                        {{-- EMAIL --}}
                         <div class="mb-3">
-                            <label>Email</label>
-                            <input type="email" name="email" class="form-control"
-                                   value="{{ $usuario->email }}" required>
+                            <label for="telefono" class="form-label">Teléfono (opcional)</label>
+                            <input type="text" name="telefono" id="telefono" class="form-control">
                         </div>
 
-                        {{-- PASSWORD --}}
                         <div class="mb-3">
-                            <label>Nueva contraseña (opcional)</label>
-                            <input type="password" name="password" class="form-control">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea name="mensaje" id="mensaje" class="form-control" rows="4" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
-                            Guardar cambios
-                        </button>
+                        <button type="submit" class="btn btn-primary w-100">Enviar consulta</button>
 
                     </form>
 

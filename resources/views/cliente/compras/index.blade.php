@@ -113,10 +113,10 @@
 
                         <div class="text-end">
 
-                            <a href="{{ route('cliente.compras.pdf"
-                               class="btn btn-outline-dark btn-sm">
-                                PDF
-                            </a>
+                              <a href="{{ url('/cliente/compras/' . $compra->id . '/pdf') }}"
+                                   class="btn btn-sm btn-outline-dark">
+                                  📄 PDF
+                               </a>
 
                         </div>
 

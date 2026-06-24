@@ -7,15 +7,18 @@ body {
     padding-top: 45px;
 }
 
+
 body {
     display: flex;
     flex-direction: column;
 }
 
+
 main {
     flex: 1;
     background: #f7f5ff;
 }
+
 
 /* =========================
    NAVBAR
@@ -27,6 +30,7 @@ main {
     box-shadow: 0 2px 10px rgba(0,0,0,.15);
 }
 
+
 .navbar-brand{
     font-size: 1.25rem;
     font-weight: 600;
@@ -36,34 +40,41 @@ main {
     gap: 10px;
 }
 
+
 .nav-link{
     font-size: .95rem;
     font-weight: 500;
     transition: .2s ease;
 }
 
+
 .nav-link:hover{
     color: #e5c6ff !important;
 }
+
 
 .logo-navbar{
     height: 55px;
     width: auto;
 }
 
+
 .logo-principal{
     height: 40px;
     width: auto;
 }
 
+
 /* =========================
    BUSCADOR NAVBAR
 ========================= */
+
 
 .navbar .input-group{
     overflow: hidden;
     border-radius: 25px;
 }
+
 
 .navbar .input-group .form-control{
     min-width: 260px;
@@ -73,9 +84,11 @@ main {
     border-radius: 25px 0 0 25px;
 }
 
+
 .navbar .input-group .form-control:focus{
     box-shadow: none;
 }
+
 
 .navbar .input-group .btn{
     border: none;
@@ -83,7 +96,9 @@ main {
     padding: .55rem 1rem;
 }
 
+
 /* Dropdown */
+
 
 .dropdown-menu{
     border: none;
@@ -91,27 +106,35 @@ main {
     border-radius: 12px;
 }
 
+
 .dropdown-item{
     padding: .6rem 1rem;
 }
+
 
 .dropdown-item:hover{
     background-color: #f7f0ff;
 }
 
+
 /* Responsive */
 
+
 @media (max-width: 991px){
+
 
     .navbar .input-group .form-control{
         min-width: 100%;
     }
 
+
     .navbar form{
         margin: 1rem 0;
     }
 
+
 }
+
 
 /* =========================
    FOOTER
@@ -123,16 +146,19 @@ main {
     margin-top:25px;
 }
 
+
 .footer-logo{
     height:60px;
     width:auto;
 }
+
 
 .footer-teatro h5{
     font-size:1rem;
     font-weight:600;
     color:#c58cff;
 }
+
 
 .footer-teatro p,
 .footer-teatro a,
@@ -141,19 +167,23 @@ main {
     margin-bottom:4px;
 }
 
+
 .footer-teatro a{
     color:#fff;
     transition:.2s;
 }
 
+
 .footer-teatro a:hover{
     color:#c58cff !important;
 }
+
 
 .footer-teatro hr{
     opacity:.2;
     margin:12px 0;
 }
+
 
 .footer-teatro .small{
     font-size:.8rem;
@@ -167,16 +197,19 @@ main {
     line-height: 1.7;
 }
 
+
 /* TITULOS CENTRADOS BIEN */
 .boleteria-card .card-header h5 {
     width: 100%;
     text-align: center;
 }
 
+
 /* MÁS AIRE ENTRE TEXTO Y BOTÓN (si usás botones en otros cards) */
 .boleteria-card .card-body {
     padding-bottom: 25px;
 }
+
 
 /* ALERTA MÁS LIMPIA */
 .boleteria-alert {
@@ -194,6 +227,7 @@ main {
     font-style: italic;
     position: relative;
 }
+
 
 .titulo-eventos::after,
 .titulo-boleteria::after {
@@ -213,15 +247,18 @@ main {
     animation: glowMove 6s linear infinite;
 }
 
+
 @keyframes glowMove {
     0% {
         background-position: 0% center;
     }
 
+
     100% {
         background-position: 200% center;
     }
 }
+
 
 /* =========================
    CARDS
@@ -233,14 +270,17 @@ main {
     transition: .3s;
 }
 
+
 .card:hover {
     transform: translateY(-4px);
 }
+
 
 .login-card {
     border-radius: 18px;
     overflow: hidden;
 }
+
 
 /* =========================
    EVENTOS
@@ -252,16 +292,19 @@ main {
     border: none;
 }
 
+
 .evento-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 25px rgba(0,0,0,.15);
 }
+
 
 .evento-img {
     width: 100%;
     height: 250px;
     object-fit: cover;
 }
+
 
 .evento-card .card-body {
     display: flex;
@@ -270,19 +313,23 @@ main {
     padding: 15px;
 }
 
+
 .precio-evento {
     color: #6f42c1;
     font-size: 1.3rem;
     font-weight: 700;
 }
 
+
 /* =========================
    CARRUSEL
 ========================= */
 
+
 .carousel {
     position: relative;
 }
+
 
 .carousel-img {
     width: 100%;
@@ -290,26 +337,32 @@ main {
     object-fit: cover;
 }
 
+
 .carousel-item {
     display: none;
 }
 
+
 .carousel-item.active {
     display: block;
 }
+
 
 .btn-login:hover {
     background: #5a34a3;
     color: white;
 }
 
+
 /* FLECHAS */
+
 
 .carousel-control-prev,
 .carousel-control-next {
     width: 8%;
     z-index: 1000;
 }
+
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -320,15 +373,18 @@ main {
     background-size: 55%;
 }
 
+
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
     transform: scale(1.1);
     transition: .3s;
 }
 
+
 /* =========================
    INDICADORES
 ========================= */
+
 
 .carousel-indicators button {
     width: 10px;
@@ -336,11 +392,14 @@ main {
     border-radius: 50%;
 }
 
+
 .carousel-indicators .active {
     background-color: #c58cff;
 }
 
+
 /* RESPONSIVE */
+
 
 @media (max-width: 992px){
     .carousel-img{
@@ -348,10 +407,12 @@ main {
     }
 }
 
+
 @media (max-width: 768px){
     .carousel-img{
         height: 280px;
     }
+
 
     .carousel-control-prev,
     .carousel-control-next{
@@ -359,11 +420,13 @@ main {
     }
 }
 
+
 @media (max-width: 576px){
     .carousel-img{
         height: 220px;
     }
 }
+
 
 /* =========================
    BOTONES
@@ -375,10 +438,12 @@ main {
     padding: 8px 16px;
 }
 
+
 .btn-purple:hover {
     background: #5a0080;
     color: white;
 }
+
 
 .btn-login {
     background: #6f42c1;
@@ -389,10 +454,12 @@ main {
     transition: .2s;
 }
 
+
 .btn-login:hover {
     background: #5a34a3;
     color: white;
 }
+
 
 /* =========================
    LOGIN / REGISTRO
@@ -404,10 +471,12 @@ main {
     align-items: center;
 }
 
+
 .titulo-login {
     font-weight: 600;
     color: #3b2a66;
 }
+
 
 .subtitulo-login {
     color: #6c6c6c;
@@ -415,19 +484,23 @@ main {
     margin-top: 5px;
 }
 
+
 .input-login {
     border-radius: 10px;
     padding: 10px;
 }
+
 
 .link-login {
     color: #51308d;
     text-decoration: none;
 }
 
+
 .link-login:hover {
     text-decoration: underline;
 }
+
 
 /* =========================
    CONTACTO
@@ -436,6 +509,7 @@ main {
     padding-top: 20px;
 }
 
+
 .contacto-card {
     width: 100%;
     max-width: 650px;
@@ -443,10 +517,12 @@ main {
     background: #f7f4fb;
 }
 
+
 .contacto-info p {
     margin-bottom: 12px;
     font-size: 1.05rem;
 }
+
 
 /* =========================
    QUIÉNES SOMOS Y BOLETERÍA
@@ -459,10 +535,12 @@ main {
     transition: .3s ease;
 }
 
+
 .card-soft:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.10);
 }
+
 
 .card-soft-header {
     font-weight: 600;
@@ -472,11 +550,13 @@ main {
     color: #333;
 }
 
+
 .card-soft-body {
     padding: 15px 20px;
     color: #555;
     line-height: 1.7;
 }
+
 
 .equipo-img {
     width: 140px;
@@ -487,9 +567,11 @@ main {
     transition: .3s;
 }
 
+
 .equipo-img:hover {
     transform: scale(1.05);
 }
+
 
 .card-seccion h4 {
     color: #6f42c1;
@@ -497,11 +579,13 @@ main {
     margin-bottom: 20px;
 }
 
+
 .metrica-numero {
     font-size: 2rem;
     font-weight: 700;
     color: #6f42c1;
 }
+
 
 .metrica-texto {
     color: #666;
@@ -516,14 +600,17 @@ main {
     line-height: 1.7;
 }
 
+
 .text-justify {
     text-align: justify;
 }
+
 
 .contacto-card .card-header {
     background: #f7f4fb;
     font-weight: 600;
 }
+
 
 /* =========================
    PAGINACIÓN
@@ -531,6 +618,7 @@ main {
 .pagination {
     justify-content: center;
 }
+
 
 .pagination .page-link {
     color: white;
@@ -540,9 +628,11 @@ main {
     border-radius: 6px;
 }
 
+
 .pagination .page-item.active .page-link {
     background: #5a0080;
 }
+
 
 /* =========================
    UTILIDADES
@@ -552,22 +642,27 @@ main {
     color: white !important;
 }
 
+
 .text-purple {
     color: purple !important;
 }
+
 
 .label-admin {
     font-weight: 600;
     font-style: italic;
 }
 
+
 /* =========================
    TALLERES
 ========================= */
 
+
 .talleres-section {
     min-height: 70vh;
 }
+
 
 .taller-card {
     border-radius: 16px;
@@ -576,10 +671,12 @@ main {
     background: #fff;
 }
 
+
 .taller-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 25px rgba(0,0,0,.12);
 }
+
 
 .taller-img {
     width: 100%;
@@ -587,14 +684,17 @@ main {
     object-fit: cover;
 }
 
+
 .taller-card .card-body {
     padding: 1.5rem;
 }
+
 
 .taller-card h5 {
     color: #4b0082;
     min-height: 55px;
 }
+
 
 .taller-desc {
     color: #555;
@@ -603,6 +703,7 @@ main {
     flex-grow: 1;
 }
 
+
 .taller-card .badge {
     font-size: .85rem;
     font-weight: 500;
@@ -610,27 +711,34 @@ main {
     line-height: 1.4;
 }
 
+
 .taller-card .btn-purple {
     border-radius: 10px;
     font-weight: 600;
     padding: 10px;
 }
 
+
 .taller-card .btn-purple:hover {
     transform: scale(1.02);
 }
 
+
 @media (max-width: 768px) {
+
 
     .taller-img {
         height: 220px;
     }
 
+
     .taller-card h5 {
         min-height: auto;
     }
 
+
 }
+
 
 /* TITULO CARD */
 .taller-card h5 {
@@ -639,6 +747,7 @@ main {
     margin-bottom: 8px;
 }
 
+
 /* DESCRIPCIÓN */
 .taller-desc {
     color: #666;
@@ -646,12 +755,14 @@ main {
     min-height: 45px;
 }
 
+
 /* INFO HORARIOS */
 .taller-info {
     color: #6f42c1;
     font-size: .9rem;
     margin-bottom: 15px;
 }
+
 
 /* BOTÓN */
 .btn-purple {
@@ -664,15 +775,18 @@ main {
     border: none;
 }
 
+
 .btn-purple:hover {
     background: #5a34a3;
     color: white;
 }
 
+
 /* SUBTÍTULO */
 .talleres-section p {
     margin-bottom: 0;
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -681,16 +795,19 @@ main {
     }
 }
 
+
 @media (max-width: 576px) {
     .taller-img {
         height: 180px;
     }
 }
 
+
 .taller-desc,
 .taller-info {
     text-align: justify;
 }
+
 
 .estado-badge{
     font-size: .95rem;
@@ -699,3 +816,49 @@ main {
     font-weight: 600;
 }
 
+/* ==========================================
+   ELIMINAR ESPACIO BLANCO SUPERIOR - FORZADO
+   ========================================== */
+
+/* Forzar que el body y html no tengan espacio */
+html, body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Forzar que el main no tenga espacio arriba */
+main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Forzar que el navbar no tenga espacio */
+.navbar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Forzar que el carrusel no tenga espacio */
+.carousel {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+/* Forzar que el contenedor principal no tenga espacio */
+.main-content {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Forzar que el container no tenga espacio */
+.container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+
+/* FORZAR PARA QUE NO HAYA NINGÚN MARGEN SUPERIOR */
+* {
+    margin-top: 0 !important;
+}

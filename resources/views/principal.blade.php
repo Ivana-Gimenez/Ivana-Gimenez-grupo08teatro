@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="main-content">
+<div class="main-content" style="margin-top: 0; padding-top: 0;">
 
     <!-- =========================
         CARRUSEL PRINCIPAL
@@ -109,31 +109,37 @@
                                                         🎟️ Quedan {{ $evento->stock_disponible }} entradas
                                                     </p>
 
-                                                    {{-- SOLO CLIENTES PUEDEN COMPRAR --}}
+                                                    {{-- BOTÓN DE COMPRA SEGÚN ROL --}}
                                                     @auth
-                                                        @if(Auth::user()->rol_id == 2)
-
-                                                            <form action="{{ route('carrito.agregar', $evento->id) }}"
+                                                        @if(auth()->user()->rol_id == 2)
+                                                            {{-- CLIENTE: puede comprar --}}
+                                                            <form action="{{ route('carrito.agregar.evento', $evento->id) }}"
                                                                   method="POST"
                                                                   class="mt-auto">
-
                                                                 @csrf
-
                                                                 <button type="submit"
                                                                         class="btn btn-purple w-100">
-                                                                    Comprar entrada
+                                                                    🎟️ Comprar entrada
                                                                 </button>
-
                                                             </form>
-
+                                                        @else
+                                                            {{-- ADMIN: mensaje informativo --}}
+                                                            <div class="mt-auto">
+                                                                <p class="text-muted small mb-0">
+                                                                    👤 Acceso solo para clientes
+                                                                </p>
+                                                                <a href="{{ route('admin.eventos.index') }}"
+                                                                   class="btn btn-outline-secondary w-100 mt-1">
+                                                                    📋 Gestionar eventos
+                                                                </a>
+                                                            </div>
                                                         @endif
                                                     @else
-
+                                                        {{-- INVITADO: botón para iniciar sesión --}}
                                                         <a href="{{ route('login') }}"
-                                                           class="btn btn-purple w-100 mt-auto">
-                                                            Iniciar sesión para comprar
+                                                           class="btn btn-outline-secondary w-100 mt-auto">
+                                                            🔑 Iniciar sesión para comprar
                                                         </a>
-
                                                     @endauth
 
                                                 </div>
@@ -173,32 +179,38 @@
 
                     @auth
 
-                    @if(Auth::user()->rol_id == 1)
-                        {{-- ADMIN --}}
-                        <a href="{{ route('admin.eventos.index') }}"
-                        class="btn btn-primary px-4">
-                            Ver más eventos
-                        </a>
+                        @if(auth()->user()->rol_id == 1)
+                            {{-- ADMIN --}}
+                            <a href="{{ route('admin.eventos.index') }}"
+                               class="btn btn-primary px-4">
+                                📋 Gestionar eventos
+                            </a>
+
+                        @else
+                            {{-- CLIENTE --}}
+                            <a href="{{ route('eventos.proximos') }}"
+                               class="btn btn-primary px-4">
+                                🎭 Ver más eventos
+                            </a>
+                        @endif
 
                     @else
-                        {{-- CLIENTE --}}
-                        <a href="{{ route('eventos.proximos') }}"
-                        class="btn btn-primary px-4">
-                            Ver más eventos
+
+                        {{-- NO LOGUEADO --}}
+                        <a href="{{ route('login') }}" class="btn btn-primary px-4">
+                            🔑 Ver más eventos
                         </a>
-                    @endif
 
-                @else
-
-                    {{-- NO LOGUEADO --}}
-                    <a href="{{ route('login') }}"
-                    class="btn btn-primary px-4">
-                        Ver más eventos
-                    </a>
-
-                @endauth
+                    @endauth
 
                 </div>
+
+                        {{-- BOTÓN VER TODOS LOS EVENTOS (AGREGADO) --}}
+                        <div class="text-center mt-3">
+                           <a href="{{ route('eventos.todos') }}" class="btn btn-outline-primary px-4">
+                                  🎭 Ver todos los eventos
+                           </a>
+                        </div>
 
             @else
 

@@ -18,7 +18,7 @@
         <ul>
             @foreach($compra->detalles as $detalle)
                 <li>
-                    <strong>{{ $detalle->evento->nombre }}</strong><br>
+                    <strong>{{ $detalle->evento->nombre ?? 'Evento no disponible' }}</strong><br>
                     Cantidad: {{ $detalle->cantidad }} x ${{ number_format($detalle->precio_unitario, 0, ',', '.') }}
                 </li>
             @endforeach

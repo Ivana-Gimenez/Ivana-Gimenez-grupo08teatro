@@ -2,108 +2,115 @@
 
 @section('content')
 
-<div class="container py-5 contacto-section">
+<div class="container py-5">
 
-    <!-- TÍTULO -->
-    <div class="row mb-5">
-        <div class="col-12 text-center">
-            <h1 class="titulo-eventos">📜 Términos y Usos</h1>
+    <div class="row justify-content-center">
 
-            <p class="subtitulo-login text-muted fs-5">
-                Condiciones generales del Teatro de la Ciudad de Corrientes
+        <div class="col-lg-10">
+
+            {{-- TÍTULO --}}
+            <h1 class="text-center mb-4 titulo-eventos">
+                📋 Términos y Condiciones
+            </h1>
+
+            <p class="text-center text-muted mb-5">
+                Última actualización: 18 de Junio de 2026
             </p>
-        </div>
-    </div>
 
-    <!-- INTRO -->
-    <div class="row justify-content-center mb-5">
-        <div class="col-lg-9">
-            <div class="card login-card shadow-sm border-0">
-                <div class="card-body">
-                    <p class="texto-justificado mb-0">
-                        Estas condiciones regulan el uso del sitio web y los servicios del Teatro de la Ciudad.
-                        Al acceder, el usuario acepta los términos aquí descriptos.
+            {{-- TARJETA --}}
+            <div class="card shadow-lg border-0">
+
+                <div class="card-body p-5">
+
+                    {{-- SECCIÓN 1 --}}
+                    <h3 class="text-purple fw-bold mb-3">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        Privacidad
+                    </h3>
+
+                    <p class="mb-4">
+                        No se comparte con terceros salvo obligación legal. 
+                        Tus datos personales están protegidos y serán utilizados 
+                        únicamente para la gestión de compras y comunicaciones 
+                        relacionadas con el Teatro de la Ciudad.
                     </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- CONTENIDO -->
-    <div class="row g-4">
+                    <hr>
 
-        @php
-        $terminos = [
-            [
-                "titulo" => "📌 Aceptación de los términos",
-                "textos" => [
-                    "Al acceder al sitio, el usuario acepta los presentes términos y condiciones.",
-                    "El uso continuo implica la aceptación de futuras modificaciones."
-                ]
-            ],
-            [
-                "titulo" => "🔐 Privacidad",
-                "textos" => [
-                    "La información personal será tratada de forma confidencial.",
-                    "No se comparte con terceros salvo obligación legal."
-                ]
-            ],
-            [
-                "titulo" => "🎟️ Compra de entradas",
-                "textos" => [
-                    "Las entradas son personales e intransferibles.",
-                    "Es responsabilidad del usuario verificar los datos antes de confirmar la compra."
-                ]
-            ],
-            [
-                "titulo" => "🔄 Devoluciones y cambios",
-                "textos" => [
-                    "No se realizan devoluciones salvo cancelación del evento.",
-                    "Los cambios están sujetos a disponibilidad y deben solicitarse con 48 hs de anticipación."
-                ],
-                "alerta" => "⚠ Sujeto a disponibilidad del evento."
-            ],
-            [
-                "titulo" => "⚙️ Modificaciones",
-                "textos" => [
-                    "El Teatro puede modificar estos términos en cualquier momento.",
-                    "Las actualizaciones entran en vigencia desde su publicación."
-                ]
-            ],
-        ];
-        @endphp
+                    {{-- SECCIÓN 2 --}}
+                    <h3 class="text-purple fw-bold mb-3">
+                        <i class="fas fa-ticket-alt me-2"></i>
+                        Compra de entradas
+                    </h3>
 
-        @foreach($terminos as $item)
+                    <p class="mb-4">
+                        Las entradas son personales e <strong>intransferibles</strong>.
+                        Es responsabilidad del usuario verificar los datos 
+                        <strong>antes de confirmar la compra</strong>. 
+                        Una vez confirmada, no se podrán modificar los datos 
+                        del comprador ni los eventos seleccionados.
+                    </p>
 
-        <div class="col-12">
+                    <hr>
 
-            <div class="card login-card shadow-sm border-0">
+                    {{-- SECCIÓN 3 --}}
+                    <h3 class="text-purple fw-bold mb-3">
+                        <i class="fas fa-undo-alt me-2"></i>
+                        Devoluciones y cambios
+                    </h3>
 
-                <div class="card-body">
+                    <p>
+                        <strong>No se realizan devoluciones</strong> 
+                        salvo cancelación del evento por parte del Teatro de la Ciudad.
+                    </p>
 
-                    <h4 class="text-center text-purple fw-bold mb-4">
-                        {{ $item['titulo'] }}
-                    </h4>
+                    <p class="mb-4">
+                        Los cambios están sujetos a disponibilidad y deben 
+                        solicitarse con <strong>48 horas de anticipación</strong>.
+                        Sujeto a disponibilidad del evento.
+                    </p>
 
-                    @foreach($item['textos'] as $texto)
-                        <p class="texto-justificado mb-3">
-                            {{ $texto }}
-                        </p>
-                    @endforeach
+                    <hr>
 
-                    @if(isset($item['alerta']))
-                        <div class="text-center text-muted mt-3">
-                            <strong>{{ $item['alerta'] }}</strong>
-                        </div>
-                    @endif
+                    {{-- SECCIÓN 4 --}}
+                    <h3 class="text-purple fw-bold mb-3">
+                        <i class="fas fa-edit me-2"></i>
+                        Modificaciones
+                    </h3>
+
+                    <p class="mb-0">
+                        El Teatro de la Ciudad puede modificar estos términos 
+                        en cualquier momento. Las actualizaciones entran en 
+                        vigencia desde su publicación en este sitio web.
+                    </p>
+
+                    <hr>
+
+                    {{-- SECCIÓN 5 (NUEVA) --}}
+                    <h3 class="text-purple fw-bold mb-3">
+                        <i class="fas fa-headset me-2"></i>
+                        Contacto
+                    </h3>
+
+                    <p class="mb-0">
+                        Si tenés dudas sobre estos términos, podés 
+                        <a href="{{ route('contacto') }}" class="text-purple">
+                            contactarnos
+                        </a>.
+                    </p>
 
                 </div>
 
             </div>
 
-        </div>
+            {{-- BOTÓN VOLVER --}}
+            <div class="text-center mt-4">
+                <a href="{{ route('home') }}" class="btn btn-login">
+                    ← Volver al inicio
+                </a>
+            </div>
 
-        @endforeach
+        </div>
 
     </div>
 

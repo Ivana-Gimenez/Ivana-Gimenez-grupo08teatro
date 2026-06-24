@@ -13,7 +13,6 @@ class Consulta extends Model
         'nombre',
         'email',
         'telefono',
-        'tipo_consulta',
         'mensaje',
         'leido'
     ];

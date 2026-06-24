@@ -44,9 +44,9 @@
                                         🎟️ Quedan {{ $evento->stock_disponible }} entradas
                                     </p>
 
-                                    @if(Auth::check() && Auth::user()->rol_id == 2)
+                                    @if(auth()->check() && auth()->user()->rol_id == 2)
 
-                                        <form action="{{ route('carrito.agregar', $evento->id) }}"
+                                        <form action="{{ route('carrito.agregar.evento', $evento->id) }}"
                                               method="POST"
                                               class="mt-auto">
 
@@ -59,7 +59,7 @@
 
                                         </form>
 
-                                    @elseif(!Auth::check())
+                                    @elseif(!auth()->check())
 
                                         <a href="{{ route('login') }}"
                                            class="btn btn-purple w-100 mt-auto">

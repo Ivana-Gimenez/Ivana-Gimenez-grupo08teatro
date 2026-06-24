@@ -149,15 +149,15 @@
                             <tr>
 
                                 <td class="fw-semibold">
-                                    {{ $item->evento->nombre }}
+                                    {{ $item->evento->nombre ?? 'Evento no disponible' }}
                                 </td>
 
                                 <td class="text-center">
-                                    {{ $item->total_entradas }}
+                                    {{ $item->total_entradas ?? 0}}
                                 </td>
 
                                 <td class="text-end text-success fw-bold">
-                                    ${{ number_format($item->total_recaudado, 0, ',', '.') }}
+                                    ${{ number_format($item->total_recaudado ?? 0, 0, ',', '.') }}
                                 </td>
 
                             </tr>

@@ -19,6 +19,22 @@
                     Gestioná tu cuenta y consultá tus compras realizadas.
                 </p>
 
+                {{-- ✅ MENSAJE DE ÉXITO --}}
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-bottom: 20px;">
+                        <strong>✅ ¡Excelente!</strong> {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                {{-- ❌ MENSAJE DE ERROR (por si lo necesitas después) --}}
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 20px;">
+                        <strong>❌ ¡Error!</strong> {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 {{-- TARJETA PRINCIPAL --}}
                 <div class="card login-card shadow-lg border-0">
 

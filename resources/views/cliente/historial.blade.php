@@ -21,7 +21,7 @@
     <div class="row justify-content-center mb-4">
         <div class="col-lg-9">
 
-            <form method="GET" action="{{ route('cliente.compras') }}" class="row g-2">
+            <form method="GET" action="{{ route('cliente.historial') }}" class="row g-2">
 
                 <!-- FECHA -->
                 <div class="col-md-4">
@@ -58,7 +58,7 @@
                         Filtrar
                     </button>
 
-                    <a href="{{ route('cliente.compras') }}" class="btn btn-secondary w-100">
+                    <a href="{{ route('cliente.historial') }}" class="btn btn-secondary w-100">
                         Limpiar
                     </a>
                 </div>
@@ -125,9 +125,9 @@
                         <div class="d-flex gap-2 justify-content-end">
 
                             <!-- PDF -->
-                            <a href="{{ route('cliente.compras.pdf', $compra->id) }}"
+                            <a href="{{ url('/cliente/compras/' . $compra->id . '/pdf') }}"
                                class="btn btn-outline-dark btn-sm">
-                                PDF
+                              📄  PDF
                             </a>
 
                             <!-- CANCELAR -->

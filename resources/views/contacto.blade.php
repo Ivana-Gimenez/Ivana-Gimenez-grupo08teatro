@@ -2,204 +2,208 @@
 
 @section('content')
 
-<div class="container py-5 contacto-section">
+<div class="container py-5">
 
-    <!-- TÍTULO -->
-    <div class="row mb-5">
-        <div class="col-12 text-center">
-            <h1 class="titulo-eventos">📞 Contacto</h1>
+    <div class="row justify-content-center">
 
-            <p class="subtitulo-login text-muted fs-5">
-                Comunicate con el Teatro de la Ciudad
+        <div class="col-lg-10">
+
+            {{-- TÍTULO --}}
+            <h1 class="text-center mb-4 titulo-eventos">
+                📧 Contacto
+            </h1>
+
+            <p class="text-center text-muted mb-5">
+                ¿Tenés alguna consulta? Completá el formulario y te responderemos a la brevedad.
             </p>
-        </div>
-    </div>
 
-    <!-- MENSAJE DE ÉXITO -->
-    <div class="row justify-content-center mb-3">
-        <div class="col-lg-9">
+            <div class="row g-4">
 
-            @if(session('success'))
-                <div class="alert alert-success text-center">
-                    {{ session('success') }}
-                </div>
-            @endif
+                {{-- FORMULARIO --}}
+                <div class="col-md-6">
 
-        </div>
-    </div>
+                    <div class="card shadow-lg border-0">
 
-    <!-- INTRO -->
-    <div class="row justify-content-center mb-5">
-        <div class="col-lg-9">
-            <div class="card login-card shadow-sm border-0">
-                <div class="card-body">
-                    <p class="texto-justificado mb-0">
-                        Podés enviarnos tu consulta a través del formulario o comunicarte directamente con nosotros.
-                        Respondemos en el menor tiempo posible.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div class="card-body p-4 p-md-5">
 
-    <!-- CONTENIDO -->
-    <div class="row g-4">
+                            <h4 class="fw-bold mb-4">
+                                ✉️ Enviar mensaje
+                            </h4>
 
-        <!-- FORMULARIO -->
-        <div class="col-md-7">
+                            <form action="{{ route('contacto.enviar') }}" method="POST">
 
-            <div class="card login-card shadow-sm border-0">
+                                @csrf
 
-                <div class="card-body">
+                                {{-- NOMBRE --}}
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label fw-semibold">
+                                        Nombre
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="nombre"
+                                           name="nombre"
+                                           placeholder="Tu nombre"
+                                           required>
+                                </div>
 
-<<<<<<< HEAD
-                    <h4 class="text-center text-purple fw-bold mb-4">
-                        ✉️ Enviar mensaje
-                    </h4>
+                                {{-- APELLIDO --}}
+                                <div class="mb-3">
+                                    <label for="apellido" class="form-label fw-semibold">
+                                        Apellido
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="apellido"
+                                           name="apellido"
+                                           placeholder="Tu apellido"
+                                           required>
+                                </div>
 
-                    <form action="{{ route('contacto.enviar') }}" method="POST">
-                        @csrf
+                                {{-- EMAIL --}}
+                                <div class="mb-3">
+                                    <label for="email" class="form-label fw-semibold">
+                                        Correo electrónico
+                                    </label>
+                                    <input type="email"
+                                           class="form-control"
+                                           id="email"
+                                           name="email"
+                                           placeholder="tu@email.com"
+                                           required>
+                                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold fst-italic">Nombre:</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                                {{-- TELÉFONO --}}
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label fw-semibold">
+                                        Teléfono
+                                    </label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="telefono"
+                                           name="telefono"
+                                           placeholder="Ej: 379 123 4567">
+                                </div>
+
+                                {{-- MENSAJE --}}
+                                <div class="mb-4">
+                                    <label for="mensaje" class="form-label fw-semibold">
+                                        Mensaje
+                                    </label>
+                                    <textarea class="form-control"
+                                              id="mensaje"
+                                              name="mensaje"
+                                              rows="5"
+                                              placeholder="Escribí tu mensaje aquí..."
+                                              required></textarea>
+                                </div>
+
+                                {{-- BOTÓN --}}
+                                <button type="submit" class="btn btn-login w-100">
+                                    📩 Enviar mensaje
+                                </button>
+
+                            </form>
+
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold fst-italic">Apellido:</label>
-                            <input type="text" name="apellido" class="form-control" placeholder="Tu apellido">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold fst-italic">Correo electrónico:</label>
-                            <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold fst-italic">Teléfono:</label>
-                            <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
-=======
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Nombre</label>
-                             <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
-                        </div>
-
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Apellido</label>
-                            <input type="text" name="apellido" class="form-control" placeholder="Tu apellido" required>
-                        </div>
-
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Correo electrónico</label>
-                            <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
-                        </div>
-
-                        <div class="mb-3 text-start">
-                            <label class="form-label fw-bold">Teléfono</label>
-                             <input type="tel" name="telefono" class="form-control" placeholder="Ej: 379 123 4567">
->>>>>>> 90c245c27042119ffc11b9cbb7d2b6a50163a065
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-bold fst-italic">Mensaje:</label>
-                            <textarea name="mensaje" class="form-control" rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-login w-100">
-                            Enviar mensaje
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- INFO -->
-        <div class="col-md-5">
-
-            <div class="card login-card shadow-sm border-0">
-
-                <div class="card-body">
-
-                    <h4 class="text-center text-purple fw-bold mb-4">
-                        📍 Información
-                    </h4>
-
-                    <p class="texto-justificado mb-2">
-                        <strong>Teatro de la Ciudad</strong>
-                    </p>
-
-                    <p class="texto-justificado mb-2">
-                        📌 Pasaje Villanueva 1470
-                    </p>
-
-                    <p class="texto-justificado mb-2">
-                        📞 379-4699617
-                    </p>
-
-                    <p class="texto-justificado mb-4">
-                        ✉️ teatrodelaciudad788@gmail.com
-                    </p>
-
-                    <hr>
-
-                    <p class="text-center fw-bold mb-3">
-                        Redes sociales
-                    </p>
-
-                    <div class="d-flex justify-content-center gap-2 flex-wrap">
-
-                        <a href="https://facebook.com"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            Facebook
-                        </a>
-
-                        <a href="https://www.instagram.com/teatrodelaciudadctes"
-                           target="_blank"
-                           class="btn btn-outline-danger btn-sm">
-                            Instagram
-                        </a>
 
                     </div>
 
                 </div>
 
-            </div>
+                {{-- INFORMACIÓN DE CONTACTO --}}
+                <div class="col-md-6">
 
-        </div>
+                    <div class="card shadow-lg border-0">
 
-    </div>
+                        <div class="card-body p-4 p-md-5">
 
-    <!-- UBICACIÓN -->
-    <div class="row mt-5">
+                            <h4 class="fw-bold mb-4">
+                                📍 Información
+                            </h4>
 
-        <div class="col-12">
+                            {{-- DIRECCIÓN --}}
+                            <div class="mb-4">
+                                <p class="fw-bold mb-1">🏛️ Teatro de la Ciudad</p>
+                                <p class="text-muted mb-0">Pasaje Villanueva 1470</p>
+                                <p class="text-muted mb-0">Corrientes Capital</p>
+                            </div>
 
-            <div class="card login-card shadow-sm border-0">
+                            {{-- CÓMO LLEGAR --}}
+                            <div class="mb-4">
+                                <p class="fw-bold mb-1">🗺️ Cómo llegar</p>
+                                <p class="text-muted mb-2">
+                                    Estamos en el centro de la ciudad, entre Catamarca y San Lorenzo.
+                                </p>
+                                <a href="https://www.google.com/maps?q=Pasaje+Villanueva+1470+Corrientes+Capital"
+                                   target="_blank"
+                                   class="btn btn-outline-primary btn-sm w-100">
+                                    📍 Ver en Google Maps
+                                </a>
+                            </div>
 
-                <div class="card-body text-center">
+                            {{-- TELÉFONO --}}
+                            <div class="mb-4">
+                                <p class="fw-bold mb-1">📞 Teléfono</p>
+                                <p class="text-muted mb-0">379-4699617</p>
+                            </div>
 
-                    <h4 class="text-purple fw-bold mb-4">
-                        🗺️ Cómo llegar
-                    </h4>
+                            {{-- EMAIL --}}
+                            <div class="mb-4">
+                                <p class="fw-bold mb-1">✉️ Email</p>
+                                <p class="text-muted mb-0">teatrodelaciudad788@gmail.com</p>
+                            </div>
 
-                    <p class="texto-justificado mb-3">
-                        📍 Pasaje Villanueva 1470, Corrientes Capital
-                    </p>
+                            <hr>
 
-                    <p class="texto-justificado mb-4">
-                        Estamos en el centro de la ciudad, entre Catamarca y San Lorenzo.
-                    </p>
+                            {{-- REDES SOCIALES --}}
+                            <h5 class="fw-bold mb-3">
+                                🌐 Redes sociales
+                            </h5>
 
-                    <a href="https://www.google.com/maps/search/?api=1&query=Pasaje+Villanueva+1470+Corrientes"
-                       target="_blank"
-                       class="btn btn-login">
-                        Ver en Google Maps
-                    </a>
+                            <div class="d-flex gap-3 flex-wrap">
+
+                                {{-- FACEBOOK --}}
+                                <a href="https://www.facebook.com/teatrodelaciudadcorrientes" 
+                                   target="_blank" 
+                                   class="btn btn-outline-primary rounded-circle"
+                                   style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;"
+                                   title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+
+                                {{-- INSTAGRAM --}}
+                                <a href="https://www.instagram.com/teatrodelaciudadctes" 
+                                   target="_blank" 
+                                   class="btn btn-outline-danger rounded-circle"
+                                   style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;"
+                                   title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+
+                                {{-- WHATSAPP --}}
+                                <a href="https://wa.me/5493794699617" 
+                                   target="_blank" 
+                                   class="btn btn-outline-success rounded-circle"
+                                   style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;"
+                                   title="WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+
+                                {{-- YOUTUBE --}}
+                                <a href="https://www.youtube.com/" 
+                                   target="_blank" 
+                                   class="btn btn-outline-danger rounded-circle"
+                                   style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 20px;"
+                                   title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -33,10 +32,13 @@ Route::get('/eventos/{id}', [EventoController::class, 'show'])
 Route::get('/buscar', [EventoController::class, 'buscar'])
     ->name('eventos.buscar');
 
-Route::view('/quienes-somos', 'quienes-somos');
-Route::view('/boleteria', 'boleteria');
-Route::view('/contacto', 'contacto');
-Route::view('/terminos', 'terminos');
+Route::get('/eventos', [EventoController::class, 'todos'])
+    ->name('eventos.todos');   
+
+Route::view('/quienes-somos', 'quienes-somos')->name('quienes-somos');
+Route::view('/boleteria', 'boleteria')->name('boleteria');
+Route::view('/contacto', 'contacto')->name('contacto');
+Route::view('/terminos', 'terminos')->name('terminos');
 
 /* TALLERES */
 Route::get('/talleres', [TallerController::class, 'index'])
@@ -96,6 +98,15 @@ Route::prefix('admin')
     Route::resource('eventos', AdminEventoController::class)
         ->names('admin.eventos');
 
+        // Restaurar evento eliminado
+    Route::post('/eventos/{id}/restore', [AdminEventoController::class, 'restore'])
+         ->name('admin.eventos.restore');
+
+
+         // Restaurar taller eliminado (si también lo necesitas)
+    Route::post('/talleres/{id}/restore', [AdminTallerController::class, 'restore'])
+         ->name('admin.talleres.restore');
+
     /* TALLERES ADMIN */
     Route::get('/talleres', [AdminTallerController::class, 'index'])
         ->name('admin.talleres.index');
@@ -131,11 +142,31 @@ Route::prefix('admin')
     Route::delete('/consultas/{id}', [AdminConsultaController::class, 'destroy'])
         ->name('admin.consultas.destroy');
 
-    /* USUARIOS */
+      /* USUARIOS */
     Route::get('/usuarios', [AdminController::class, 'usuarios'])
         ->name('admin.usuarios.index');
 
-    /* REPORTES */
+        // Crear usuario (mostrar formulario)
+    Route::get('/usuarios/create', [AdminController::class, 'createUsuario'])
+         ->name('admin.usuarios.create');
+
+          // Guardar usuario
+    Route::post('/usuarios', [AdminController::class, 'storeUsuario'])
+          ->name('admin.usuarios.store');
+
+         // Editar usuario
+    Route::get('/usuarios/{id}/edit', [AdminController::class, 'editUsuario'])
+           ->name('admin.usuarios.edit');
+
+           // Actualizar usuario
+    Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])
+           ->name('admin.usuarios.update');
+
+           // Eliminar usuario
+    Route::delete('/usuarios/{id}', [AdminController::class, 'destroyUsuario'])
+            ->name('admin.usuarios.destroy');
+
+       /* REPORTES */
     Route::get('/reportes/ventas', [ReporteController::class, 'ventas'])
         ->name('admin.reportes.ventas');
 
@@ -158,15 +189,26 @@ Route::prefix('cliente')
     Route::get('/', [ClienteController::class, 'index'])
         ->name('cliente.dashboard');
 
+    /* HISTORIAL DE COMPRAS */
     Route::get('/historial', [ClienteController::class, 'historial'])
         ->name('cliente.historial');
 
+    /* PDF DE LA COMPRA */
+    Route::get('/compras/{id}/pdf', [ClienteController::class, 'pdfCompra'])
+        ->name('cliente.compras.pdf');
+
+    /* CANCELAR COMPRA */
+    Route::post('/compras/{id}/cancelar', [ClienteController::class, 'cancelarCompra'])
+        ->name('cliente.compras.cancelar');
+
+    /* TALLERES DEL CLIENTE */
     Route::get('/talleres', [ClienteController::class, 'talleres'])
         ->name('cliente.talleres');
 
     Route::delete('/talleres/{id}/cancelar', [TallerController::class, 'cancelarInscripcion'])
         ->name('cliente.talleres.cancelar');
 
+    /* PERFIL */
     Route::get('/perfil', [ClienteController::class, 'perfil'])
         ->name('cliente.perfil');
 
@@ -186,6 +228,9 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])
         ->name('carrito.agregar');
 
+    Route::post('/carrito/agregar-evento/{id}', [CarritoController::class, 'agregarEvento'])
+        ->name('carrito.agregar.evento');
+
     Route::get('/carrito', [CarritoController::class, 'verCarrito'])
         ->name('carrito.ver');
 
@@ -201,7 +246,7 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::post('/carrito/finalizar', [CarritoController::class, 'finalizarCompra'])
         ->name('carrito.finalizar');
 
-    /* Ruta de Ivana (confirmar compra) */
+    /* CONFIRMAR COMPRA */
     Route::post('/compra/{id}/confirmar', [CompraController::class, 'confirmarPago'])
         ->name('compra.confirmar');
 });
@@ -215,4 +260,4 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
 
 Route::get('/en-construccion', function () {
     return view('en-construccion');
-});
+})->name('en-construccion');

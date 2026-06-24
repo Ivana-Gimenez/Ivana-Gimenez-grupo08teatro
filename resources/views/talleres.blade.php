@@ -1,138 +1,57 @@
 @extends('plantilla')
 
 @section('content')
-
-<section class="eventos-section py-5">
-
-    <div class="container">
-
-        <h2 class="text-center titulo-eventos mb-5">
-            🎨 Talleres Artísticos
-        </h2>
-
-        @if($talleres->count() > 0)
-
-            <div class="row g-4">
-
-                @foreach($talleres as $taller)
-
-                    <div class="col-md-4">
-
-                        <div class="card evento-card h-100 shadow-sm border-0">
-
-                            <img src="{{ asset('img/talleres/' . $taller->imagen) }}"
-                                 class="evento-img"
-                                 alt="{{ $taller->nombre }}">
-
-                            <div class="card-body text-center d-flex flex-column">
-
-                                <h5 class="fw-bold">{{ $taller->nombre }}</h5>
-
-                                <p class="text-muted mb-1">
-                                    {{ $taller->descripcion }}
-                                </p>
-
-                                <p class="text-muted small mb-2">
-                                    📅 {{ $taller->dias_horarios }}
-                                </p>
-
-                                <p class="text-success fw-semibold mb-2">
-                                    💰 ${{ number_format($taller->precio, 0, ',', '.') }}
-                                </p>
-
-                                <p class="text-muted small mb-3">
-                                    🎟️ Cupos: {{ $taller->cupos_disponibles }}
-                                </p>
-
-                                {{-- =========================
-                                    BOTÓN SEGÚN ROL
-                                ========================== --}}
-                                @auth
-
-                                    {{-- CLIENTE --}}
-                                    @if(Auth::user()->rol_id == 2)
-
-                                        <form action="{{ route('carrito.agregar', $taller->id) }}"
-                                              method="POST"
-                                              class="mt-auto">
-
-                                            @csrf
-
-                                            <button class="btn btn-purple w-100">
-                                                Inscribirme
-                                            </button>
-
-                                        </form>
-
-                                    @endif
-
-                                @else
-
-                                    {{-- INVITADO --}}
-                                    <a href="{{ route('login') }}"
-                                       class="btn btn-purple w-100 mt-auto">
-                                        Iniciar sesión
-                                    </a>
-
-                                @endauth
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                @endforeach
-
-            </div>
-
-        @else
-
-            <div class="text-center text-muted py-5">
-                <h4>🔍 No hay talleres disponibles</h4>
-            </div>
-
-        @endif
-
-        {{-- =========================
-            BOTÓN VER MÁS SEGÚN ROL
-        ========================== --}}
-        <div class="text-center mt-5">
-
-            @auth
-
-                {{-- ADMIN --}}
-                @if(Auth::user()->rol_id == 1)
-
-                    <a href="{{ route('admin.talleres.index') }}"
-                       class="btn btn-primary px-4">
-                        Ver gestión de talleres
-                    </a>
-
-                {{-- CLIENTE --}}
-                @elseif(Auth::user()->rol_id == 2)
-
-                    <a href="{{ route('talleres.index') }}"
-                       class="btn btn-primary px-4">
-                        Ver más talleres
-                    </a>
-
-                @endif
-
-            @else
-
-                {{-- INVITADO --}}
-                <a href="{{ route('login') }}"
-                   class="btn btn-primary px-4">
-                    Ver más talleres
-                </a>
-
-            @endauth
-
-        </div>
-
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color: #2d3748;">🎨 Talleres</h1>
+        <p class="text-muted fs-5">Conocé nuestros talleres artísticos y sumate a las actividades.</p>
     </div>
 
-</section>
+    <div class="row g-4">
+        @forelse($talleres as $taller)
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 16px; overflow: hidden;">
+                @if($taller->imagen)
+                <img src="{{ asset('img/talleres/' . $taller->imagen) }}" class="card-img-top" alt="{{ $taller->nombre }}" style="height: 220px; object-fit: cover;">
+                @else
+                <div style="height: 220px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 60px;">🎭</div>
+                @endif
+                <div class="card-body text-center">
+                    <h5 class="fw-bold">{{ $taller->nombre }}</h5>
+                    @if($taller->categoria)
+                    <span class="badge" style="background: #6c63ff;">{{ $taller->categoria }}</span>
+                    @endif
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <small class="text-muted">Precio</small>
+                            <p class="fw-bold text-success">${{ number_format($taller->precio, 0, ',', '.') }}</p>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">Cupos</small>
+                            <p class="fw-bold">{{ $taller->cupos_disponibles ?? 0 }}</p>
+                        </div>
+                    </div>
+                    
+                    {{-- BOTÓN WHATSAPP --}}
+                    <a href="https://wa.me/5493794699617?text=Hola!%20Quiero%20inscribirme%20al%20taller%20de%20{{ urlencode($taller->nombre) }}%20y%20necesito%20más%20información." 
+                       target="_blank" 
+                       class="btn w-100 fw-bold" 
+                       style="background: #25D366; color: white; border: none; padding: 10px; border-radius: 8px; text-decoration: none; display: inline-block;">
+                        💬 Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        @empty
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No hay talleres disponibles en este momento.</p>
+        </div>
+        @endforelse
+    </div>
 
+    {{-- PAGINACIÓN MEJORADA --}}
+    <div class="d-flex justify-content-center mt-5">
+        {{ $talleres->links('pagination::bootstrap-5') }}
+    </div>
+</div>
 @endsection

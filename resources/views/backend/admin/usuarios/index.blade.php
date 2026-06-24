@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container py-4">
+<div class="container py-5">
 
     <a href="/admin" class="btn btn-outline-secondary mb-3">
         ← Volver al Panel de Administrador
@@ -31,7 +31,7 @@
                 <input type="text"
                        name="buscar"
                        class="form-control"
-                       placeholder="Buscar por nombre, apellido o email"
+                       placeholder="Buscar  email"
                        value="{{ request('buscar') }}">
 
                 <button class="btn btn-primary">
@@ -44,7 +44,7 @@
 
     </form>
 
-    {{-- TOTAL --}}
+    {{-- TOTAL (CORREGIDO) --}}
     <div class="row justify-content-center mb-4">
 
         <div class="col-md-3">
@@ -58,7 +58,7 @@
                     </h6>
 
                     <h2 class="fw-bold mb-0">
-                        {{ $usuarios->total() }}
+                        {{ $usuarios->count() }}
                     </h2>
 
                 </div>
@@ -215,10 +215,10 @@
 
     </div>
 
-    {{-- PAGINACIÓN LIMPIA --}}
-    <div class="d-flex justify-content-center mt-4">
+    {{-- PAGINACIÓN ELIMINADA --}}
+    {{-- <div class="d-flex justify-content-center mt-4">
         {{ $usuarios->appends(request()->all())->links() }}
-    </div>
+    </div> --}}
 
 </div>
 

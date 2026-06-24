@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Compra;
+use App\Models\Inscripcion;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClienteController extends Controller
 {
@@ -14,14 +17,22 @@ class ClienteController extends Controller
         return view('cliente.cliente');
     }
 
-    public function historial()
+    public function historial(Request $request)
     {
-        $compras = Compra::where('user_id', Auth::id())
+        $user = Auth::user();
+        
+        $compras = Compra::where('user_id', $user->id)
+            ->when($request->fecha, function($query, $fecha) {
+                return $query->whereDate('created_at', $fecha);
+            })
+            ->when($request->id, function($query, $id) {
+                return $query->where('id', $id);
+            })
             ->with('detalles.evento')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
-        return view('cliente.historial', compact('compras'));
+        return view('cliente.compras.index', compact('compras'));
     }
 
     public function talleres()
@@ -61,7 +72,7 @@ class ClienteController extends Controller
 
         if ($request->filled('password')) {
             $request->validate([
-                'password' => 'min:6'
+                'password' => 'min:6|confirmed'
             ]);
 
             $user->password = Hash::make($request->password);
@@ -70,5 +81,48 @@ class ClienteController extends Controller
         $user->save();
 
         return back()->with('success', 'Perfil actualizado correctamente');
+    }
+
+    // =========================
+    // PDF DE LA COMPRA
+    // =========================
+          public function pdfCompra($id)
+       { 
+            $compra = Compra::where('user_id', Auth::id())
+                 ->with('detalles.evento', 'user')
+                 ->findOrFail($id);
+    
+            $pdf = Pdf::loadView('pdf.compra', compact('compra'));
+    
+            return $pdf->download('factura-compra-' . $compra->id . '.pdf');
+        }
+    // =========================
+    // CANCELAR COMPRA
+    // =========================
+    public function cancelarCompra($id)
+    {
+        $compra = Compra::where('user_id', Auth::id())
+            ->where('estado', 'en_proceso')
+            ->findOrFail($id);
+        
+        // Actualizar el estado de la compra
+        $compra->update(['estado' => 'cancelada']);
+        
+        // Devolver los cupos/stock (opcional)
+        // Aquí podrías incrementar el stock de los eventos si quieres
+        
+        return back()->with('success', 'Compra #' . $id . ' cancelada correctamente.');
+    }
+
+    // =========================
+    // DETALLE DE COMPRA (opcional)
+    // =========================
+    public function detalleCompra($id)
+    {
+        $compra = Compra::where('user_id', Auth::id())
+            ->with('detalles.evento')
+            ->findOrFail($id);
+
+        return view('cliente.compras.detalle', compact('compra'));
     }
 }
