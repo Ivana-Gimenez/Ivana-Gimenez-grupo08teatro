@@ -42,7 +42,13 @@
                                 <li><a class="dropdown-item" href="/cliente">👤 Mi Cuenta</a></li>
                                 <li><a class="dropdown-item" href="/cliente/historial">📜 Historial de compras</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="/carrito">🛒 Mi Carrito</a></li>
+                            @auth
+                                @if(auth()->user()->rol_id == 2)
+                                    <a href="{{ route('carrito.ver') }}" class="nav-link">
+                                        🛒 Carrito
+                                    </a>
+                                @endif
+                            @endauth
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form method="POST" action="/logout">

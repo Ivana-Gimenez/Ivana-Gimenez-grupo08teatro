@@ -142,29 +142,28 @@ Route::prefix('admin')
     Route::delete('/consultas/{id}', [AdminConsultaController::class, 'destroy'])
         ->name('admin.consultas.destroy');
 
-      /* USUARIOS */
-    Route::get('/usuarios', [AdminController::class, 'usuarios'])
-        ->name('admin.usuarios.index');
+/* USUARIOS */
+Route::get('/usuarios', [AdminController::class, 'usuarios'])
+    ->name('admin.usuarios.index');
 
-        // Crear usuario (mostrar formulario)
-    Route::get('/usuarios/create', [AdminController::class, 'createUsuario'])
-         ->name('admin.usuarios.create');
+Route::get('/usuarios/create', [AdminController::class, 'createUsuario'])
+    ->name('admin.usuarios.create');
 
-          // Guardar usuario
-    Route::post('/usuarios', [AdminController::class, 'storeUsuario'])
-          ->name('admin.usuarios.store');
+Route::post('/usuarios', [AdminController::class, 'storeUsuario'])
+    ->name('admin.usuarios.store');
 
-         // Editar usuario
-    Route::get('/usuarios/{id}/edit', [AdminController::class, 'editUsuario'])
-           ->name('admin.usuarios.edit');
+Route::get('/usuarios/{id}/edit', [AdminController::class, 'editUsuario'])
+    ->name('admin.usuarios.edit');
 
-           // Actualizar usuario
-    Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])
-           ->name('admin.usuarios.update');
+Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])
+    ->name('admin.usuarios.update');
 
-           // Eliminar usuario
-    Route::delete('/usuarios/{id}', [AdminController::class, 'destroyUsuario'])
-            ->name('admin.usuarios.destroy');
+Route::delete('/usuarios/{id}', [AdminController::class, 'destroyUsuario'])
+    ->name('admin.usuarios.destroy');
+
+// ✅ RESTAURAR USUARIO (AGREGAR ESTO)
+Route::post('/usuarios/{id}/restore', [AdminController::class, 'restoreUsuario'])
+    ->name('admin.usuarios.restore');
 
        /* REPORTES */
     Route::get('/reportes/ventas', [ReporteController::class, 'ventas'])
