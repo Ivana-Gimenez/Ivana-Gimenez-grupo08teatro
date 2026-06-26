@@ -25,9 +25,27 @@
                         <strong>✅ ¡Excelente!</strong> {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+
+                    {{-- 🧾 BOTONES PARA FACTURA --}}
+                    <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+                        {{-- DESCARGAR PDF --}}
+                        <a href="{{ session('ultima_compra') ? route('cliente.compras.pdf', session('ultima_compra')) : '#' }}"
+                           class="btn btn-outline-primary"
+                           target="_blank">
+                            📄 Descargar Factura PDF
+                        </a>
+
+                        {{-- REENVIAR POR CORREO --}}
+                        <form action="{{ route('cliente.factura.reenviar') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-success">
+                                ✉️ Reenviar Factura por Correo
+                            </button>
+                        </form>
+                    </div>
                 @endif
 
-                {{-- ❌ MENSAJE DE ERROR (por si lo necesitas después) --}}
+                {{-- ❌ MENSAJE DE ERROR --}}
                 @if(session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-bottom: 20px;">
                         <strong>❌ ¡Error!</strong> {{ session('error') }}

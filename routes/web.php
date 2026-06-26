@@ -98,12 +98,11 @@ Route::prefix('admin')
     Route::resource('eventos', AdminEventoController::class)
         ->names('admin.eventos');
 
-        // Restaurar evento eliminado
+    // Restaurar evento eliminado
     Route::post('/eventos/{id}/restore', [AdminEventoController::class, 'restore'])
          ->name('admin.eventos.restore');
 
-
-         // Restaurar taller eliminado (si también lo necesitas)
+    // Restaurar taller eliminado
     Route::post('/talleres/{id}/restore', [AdminTallerController::class, 'restore'])
          ->name('admin.talleres.restore');
 
@@ -142,31 +141,30 @@ Route::prefix('admin')
     Route::delete('/consultas/{id}', [AdminConsultaController::class, 'destroy'])
         ->name('admin.consultas.destroy');
 
-      /* USUARIOS */
+    /* USUARIOS */
     Route::get('/usuarios', [AdminController::class, 'usuarios'])
         ->name('admin.usuarios.index');
 
-        // Crear usuario (mostrar formulario)
     Route::get('/usuarios/create', [AdminController::class, 'createUsuario'])
-         ->name('admin.usuarios.create');
+        ->name('admin.usuarios.create');
 
-          // Guardar usuario
     Route::post('/usuarios', [AdminController::class, 'storeUsuario'])
-          ->name('admin.usuarios.store');
+        ->name('admin.usuarios.store');
 
-         // Editar usuario
     Route::get('/usuarios/{id}/edit', [AdminController::class, 'editUsuario'])
-           ->name('admin.usuarios.edit');
+        ->name('admin.usuarios.edit');
 
-           // Actualizar usuario
     Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])
-           ->name('admin.usuarios.update');
+        ->name('admin.usuarios.update');
 
-           // Eliminar usuario
     Route::delete('/usuarios/{id}', [AdminController::class, 'destroyUsuario'])
-            ->name('admin.usuarios.destroy');
+        ->name('admin.usuarios.destroy');
 
-       /* REPORTES */
+    // Restaurar usuario
+    Route::post('/usuarios/{id}/restore', [AdminController::class, 'restoreUsuario'])
+        ->name('admin.usuarios.restore');
+
+    /* REPORTES */
     Route::get('/reportes/ventas', [ReporteController::class, 'ventas'])
         ->name('admin.reportes.ventas');
 
@@ -214,6 +212,10 @@ Route::prefix('cliente')
 
     Route::post('/perfil', [ClienteController::class, 'actualizarPerfil'])
         ->name('cliente.perfil.update');
+
+    /* ✅ REENVIAR FACTURA POR CORREO */
+    Route::post('/factura/reenviar', [ClienteController::class, 'reenviarFactura'])
+        ->name('cliente.factura.reenviar');
 });
 
 

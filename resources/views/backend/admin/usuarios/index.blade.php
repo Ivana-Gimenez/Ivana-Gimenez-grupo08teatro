@@ -21,6 +21,19 @@
 
     </div>
 
+    {{-- FILTROS PARA VER USUARIOS (AGREGADO) --}}
+    <div class="d-flex justify-content-center gap-2 mb-3">
+        <a href="{{ route('admin.usuarios.index', ['estado' => 'activos']) }}" class="btn btn-sm btn-outline-primary">
+            ✅ Activos
+        </a>
+        <a href="{{ route('admin.usuarios.index', ['estado' => 'eliminados']) }}" class="btn btn-sm btn-outline-danger">
+            🗑️ Eliminados
+        </a>
+        <a href="{{ route('admin.usuarios.index') }}" class="btn btn-sm btn-outline-secondary">
+            📋 Todos
+        </a>
+    </div>
+
     {{-- BUSCADOR COMPACTO --}}
     <form method="GET" class="mb-3 d-flex justify-content-center">
 
@@ -31,7 +44,7 @@
                 <input type="text"
                        name="buscar"
                        class="form-control"
-                       placeholder="Buscar  email"
+                       placeholder="Buscar por email"
                        value="{{ request('buscar') }}">
 
                 <button class="btn btn-primary">
@@ -217,7 +230,7 @@
 
     {{-- PAGINACIÓN ELIMINADA --}}
     {{-- <div class="d-flex justify-content-center mt-4">
-        {{ $usuarios->appends(request()->all())->links() }}
+        {{ $usuarios->appends(request()->query())->links() }}
     </div> --}}
 
 </div>

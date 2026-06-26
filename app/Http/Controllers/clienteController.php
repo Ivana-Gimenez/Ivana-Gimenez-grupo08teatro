@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Models\Compra;
 use App\Models\Inscripcion;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Mail\CompraConfirmacion;
 
 class ClienteController extends Controller
 {
@@ -125,4 +126,25 @@ class ClienteController extends Controller
 
         return view('cliente.compras.detalle', compact('compra'));
     }
+
+    // =========================
+// REENVIAR FACTURA POR CORREO
+// =========================
+public function reenviarFactura(Request $request)
+ {
+    $user = Auth::user();
+    $ultimaCompra = session('ultima_compra');
+
+    if (!$ultimaCompra) {
+        return back()->with('error', 'No hay factura para reenviar.');
+    }
+
+    $compra = Compra::where('user_id', $user->id)
+        ->with('detalles.evento')
+        ->findOrFail($ultimaCompra);
+
+    Mail::to($user->email)->send(new CompraConfirmacion($compra));
+
+    return back()->with('success', 'Factura reenviada correctamente a tu correo.');
+ }
 }

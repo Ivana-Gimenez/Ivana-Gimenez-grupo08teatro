@@ -10,7 +10,7 @@
                     <a class="nav-link text-white" href="{{ route('eventos.todos') }}">🎭 Eventos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/talleres">Talleres</a>
+                    <a class="nav-link text-white" href="/talleres">📚 Talleres</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
@@ -41,23 +41,25 @@
                             @else
                                 <li><a class="dropdown-item" href="/cliente">👤 Mi Cuenta</a></li>
                                 <li><a class="dropdown-item" href="/cliente/historial">📜 Historial de compras</a></li>
+                                <li><a class="dropdown-item" href="{{ route('carrito.ver') }}">🛒 Carrito</a></li>
                             @endif
-                            <li><a class="dropdown-item" href="/carrito">🛒 Mi Carrito</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form method="POST" action="/logout">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                    <button type="submit" class="dropdown-item" style="background:none;border:none;width:100%;text-align:left;color:#212529;">
+                                        🔓 Cerrar Sesión
+                                    </button>
                                 </form>
                             </li>
                         </ul>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/login">Iniciar Sesión</a>
+                        <a class="nav-link text-white" href="/login">🔑 Iniciar Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/registro">Registrarse</a>
+                        <a class="nav-link text-white" href="/registro">📝 Registrarse</a>
                     </li>
                 @endauth
             </ul>
@@ -65,7 +67,7 @@
             <!-- BUSCADOR -->
             <form class="d-flex" role="search" action="/buscar" method="GET">
                 <input class="form-control me-2" type="search" name="q" placeholder="Buscar eventos" aria-label="Buscar">
-                <button class="btn btn-outline-light" type="submit">Buscar</button>
+                <button class="btn btn-outline-light" type="submit">🔍 Buscar</button>
             </form>
         </div>
     </div>

@@ -16,7 +16,7 @@
 
                 <thead>
                     <tr>
-                        <th>Taller</th>
+                        <th>Producto</th>
                         <th>Precio unitario</th>
                         <th>Cantidad</th>
                         <th>Subtotal</th>
@@ -29,11 +29,23 @@
                     <tr>
 
                         <td>
-                            {{ $item->taller?->nombre ?? 'Taller eliminado' }}
+                            @if($item->evento_id)
+                                {{ $item->evento->nombre ?? 'Evento eliminado' }}
+                            @elseif($item->taller_id)
+                                {{ $item->taller->nombre ?? 'Taller eliminado' }}
+                            @else
+                                Producto no disponible
+                            @endif
                         </td>
 
                         <td>
-                            ${{ number_format($item->taller?->precio ?? 0, 0, ',', '.') }}
+                            @if($item->evento_id)
+                                ${{ number_format($item->evento->precio ?? 0, 0, ',', '.') }}
+                            @elseif($item->taller_id)
+                                ${{ number_format($item->taller->precio ?? 0, 0, ',', '.') }}
+                            @else
+                                $0
+                            @endif
                         </td>
 
                         <td>
@@ -55,7 +67,13 @@
                         </td>
 
                         <td class="fw-bold">
-                            ${{ number_format($item->cantidad * ($item->taller?->precio ?? 0), 0, ',', '.') }}
+                            @if($item->evento_id)
+                                ${{ number_format($item->cantidad * ($item->evento->precio ?? 0), 0, ',', '.') }}
+                            @elseif($item->taller_id)
+                                ${{ number_format($item->cantidad * ($item->taller->precio ?? 0), 0, ',', '.') }}
+                            @else
+                                $0
+                            @endif
                         </td>
 
                         <td>

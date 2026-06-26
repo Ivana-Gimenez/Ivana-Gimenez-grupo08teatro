@@ -20,105 +20,65 @@
 
     </div>
 
+    {{-- RESÚMEN DE COMISIONES --}}
     <div class="row g-3 mb-4">
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0 h-100">
-
                 <div class="card-body text-center">
-
-                    <h6 class="text-muted mb-2">
-                        🎟 Entradas Vendidas
-                    </h6>
-
-                    <h2 class="fw-bold mb-0">
-                        {{ $totalEntradas }}
-                    </h2>
-
+                    <h6 class="text-muted mb-2">🎟 Entradas Vendidas</h6>
+                    <h2 class="fw-bold mb-0">{{ $totalEntradas }}</h2>
                 </div>
-
             </div>
-
         </div>
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0 h-100">
-
                 <div class="card-body text-center">
-
-                    <h6 class="text-muted mb-2">
-                        💰 Recaudación Total
-                    </h6>
-
-                    <h2 class="fw-bold text-success mb-0">
-                        ${{ number_format($totalRecaudado, 0, ',', '.') }}
-                    </h2>
-
+                    <h6 class="text-muted mb-2">💰 Recaudación Total</h6>
+                    <h2 class="fw-bold text-success mb-0">${{ number_format($totalRecaudado, 0, ',', '.') }}</h2>
                 </div>
-
             </div>
-
         </div>
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0 h-100">
-
                 <div class="card-body text-center">
-
-                    <h6 class="text-muted mb-2">
-                        💳 Comisiones
-                    </h6>
-
-                    <h2 class="fw-bold text-warning mb-0">
-                        ${{ number_format($totalComisiones, 0, ',', '.') }}
-                    </h2>
-
+                    <h6 class="text-muted mb-2">💳 Total Comisiones</h6>
+                    <h2 class="fw-bold text-warning mb-0">${{ number_format($totalComisiones, 0, ',', '.') }}</h2>
                 </div>
-
             </div>
-
         </div>
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0 h-100">
-
                 <div class="card-body text-center">
-
-                    <h6 class="text-muted mb-2">
-                        📈 Ganancia Neta
-                    </h6>
-
-                    <h2 class="fw-bold text-primary mb-0">
-                        ${{ number_format($gananciaNeta, 0, ',', '.') }}
-                    </h2>
-
+                    <h6 class="text-muted mb-2">📈 Ganancia Neta</h6>
+                    <h2 class="fw-bold text-primary mb-0">${{ number_format($gananciaNeta, 0, ',', '.') }}</h2>
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
-    {{-- TOTAL DE COMPRAS --}}
-    <div class="card shadow-sm border-0 mb-4">
-
-        <div class="card-body text-center">
-
-            <h5 class="mb-2">
-                🛒 Compras Realizadas
-            </h5>
-
-            <h3 class="fw-bold">
-                {{ $totalCompras }}
-            </h3>
-
+    {{-- TOTAL DE COMPRAS Y COMISIÓN POR COMPRA --}}
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">🛒 Total de Compras</h6>
+                    <h3 class="fw-bold">{{ $totalCompras }}</h3>
+                </div>
+            </div>
         </div>
-
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center">
+                    <h6 class="text-muted mb-2">💵 Comisión por Compra</h6>
+                    <h3 class="fw-bold">$2.000</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
     {{-- DETALLE POR EVENTO --}}
@@ -126,7 +86,7 @@
 
         <div class="card-body">
 
-            <h5 class="text-center text-purple fw-bold mb-4"">
+            <h5 class="text-center text-purple fw-bold mb-4">
                 📋 Detalle por Evento
             </h5>
 
@@ -134,11 +94,13 @@
 
                 <table class="table table-hover align-middle">
 
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th>Evento</th>
                             <th class="text-center">Entradas Vendidas</th>
                             <th class="text-end">Recaudado</th>
+                            <th class="text-end">Comisión</th>
+                            <th class="text-end">Ganancia Neta</th>
                         </tr>
                     </thead>
 
@@ -147,25 +109,27 @@
                         @forelse($resumenEventos as $item)
 
                             <tr>
-
                                 <td class="fw-semibold">
                                     {{ $item->evento->nombre ?? 'Evento no disponible' }}
                                 </td>
-
                                 <td class="text-center">
-                                    {{ $item->total_entradas ?? 0}}
+                                    {{ $item->total_entradas ?? 0 }}
                                 </td>
-
                                 <td class="text-end text-success fw-bold">
                                     ${{ number_format($item->total_recaudado ?? 0, 0, ',', '.') }}
                                 </td>
-
+                                <td class="text-end text-warning">
+                                    ${{ number_format($item->comision ?? 0, 0, ',', '.') }}
+                                </td>
+                                <td class="text-end text-primary fw-bold">
+                                    ${{ number_format($item->ganancia_neta ?? 0, 0, ',', '.') }}
+                                </td>
                             </tr>
 
                         @empty
 
                             <tr>
-                                <td colspan="3" class="text-center text-muted py-4">
+                                <td colspan="5" class="text-center text-muted py-4">
                                     No hay ventas registradas.
                                 </td>
                             </tr>
@@ -173,6 +137,17 @@
                         @endforelse
 
                     </tbody>
+
+                    {{-- PIE DE TABLA CON TOTALES --}}
+                    <tfoot class="table-active fw-bold">
+                        <tr>
+                            <td>TOTALES</td>
+                            <td class="text-center">{{ $totalEntradas }}</td>
+                            <td class="text-end">${{ number_format($totalRecaudado, 0, ',', '.') }}</td>
+                            <td class="text-end">${{ number_format($totalComisiones, 0, ',', '.') }}</td>
+                            <td class="text-end">${{ number_format($gananciaNeta, 0, ',', '.') }}</td>
+                        </tr>
+                    </tfoot>
 
                 </table>
 

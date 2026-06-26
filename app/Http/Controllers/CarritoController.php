@@ -260,6 +260,9 @@ class CarritoController extends Controller
                 'metodo_pago_id' => $request->metodo_pago_id,
             ]);
 
+            // ✅ GUARDAR ID DE LA ÚLTIMA COMPRA EN SESIÓN
+            session(['ultima_compra' => $compra->id]);
+
             foreach ($carrito as $item) {
                 // Crear detalle de compra
                 if ($item->evento_id) {
@@ -303,7 +306,16 @@ class CarritoController extends Controller
 
             Carrito::where('user_id', $user->id)->delete();
 
-            Mail::to($user->email)->send(new CompraConfirmacion($compra));
+            // ✅ VALIDAR EMAIL ANTES DE ENVIAR
+            if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+                Mail::to($user->email)->send(new CompraConfirmacion($compra));
+            } else {
+                // Si el email no es válido, registramos el error
+                \Log::error('Email inválido para el usuario ' . $user->id . ': ' . $user->email);
+                return redirect('/cliente')
+                    ->with('success', 'Compra realizada correctamente. Total: $' . number_format($total, 0, ',', '.'))
+                    ->with('warning', 'No pudimos enviar la factura porque el email no es válido.');
+            }
 
             return redirect('/cliente')
                 ->with('success', 'Compra realizada correctamente. Total: $' .
